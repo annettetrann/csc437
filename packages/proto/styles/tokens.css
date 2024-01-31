@@ -3,8 +3,16 @@
     --color-lightpink-white: #F9DEFF;
     --color-hot-pink: rgb(255, 100, 203);
     --color-light-tan: rgb(245, 224, 197);
+    --color-light-black: rgb(26, 24, 24);
 
+    --font-size-large: 3rem;
     --font-size-regular: 2.5rem;
     --font-size-small: 1.5rem;
     --font-size-body: 1rem;
+    --font-size-xsmall: 0.5rem;
+
+    --font-family-headers: "Bebas Neue", Cambria, 
+        "Noto Serif", "Bitstream Charter",serif;
+    --font-family-body: 'Red Hat Display', 'Lucida Sans Unicode', 
+        'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
