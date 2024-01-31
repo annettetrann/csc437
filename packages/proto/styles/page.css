@@ -1,0 +1,174 @@
+* {
+    box-sizing: border-box;
+}
+
+header {
+    background-color: rgb(26, 24, 24);
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 0.25rem;
+    gap: 2rem;
+
+}
+body{
+    background-color: var(--color-dark-purple);
+    background-image: linear-gradient(var(--color-dark-purple), white);
+    background: var(--color-dark-purple);
+    background: linear-gradient(var(--color-dark-purple), white);
+    font-family: 'Red Hat Display', 'Lucida Sans Unicode', 
+                'Lucida Grande', 'Lucida Sans', 
+                Arial, sans-serif;
+    font-size: 1rem;
+    vertical-align: baseline;
+    text-align: center;
+    font-weight: 500;
+}
+/* .header a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px; 
+    line-height: 25px;
+    border-radius: 4px;
+  } */
+
+
+/* Style the active/current link*/
+.header a.active {
+    background-color: var(--color-hot-pink);
+    color: white;
+}
+
+/* .header-right {
+    float: right;
+} */
+
+.page {
+    /* background-color: var(--color-dark-purple);
+    background-image: linear-gradient(var(--color-dark-purple), white);
+    background: var(--color-dark-purple);
+    background: linear-gradient(var(--color-dark-purple), white); */
+    display: flex;
+    flex-basis: 100%;
+    overflow: auto;
+    margin: 0;
+    padding: var(--size-spacing-medium);
+}
+
+
+.page > header {
+    flex-basis: min-content;
+}
+
+
+h1, h2, h3, h4, h5, h6{
+    /* background-color:#121212; */
+    color: var(--color-lightpink-white);
+    line-height: 1.5;
+    text-align: center;
+    border: white;
+    font-family: "Bebas Neue", Cambria, 
+                "Noto Serif", "Bitstream Charter",
+                serif;
+}
+img {
+    width: 100%
+}
+
+/*title fonts: Bebas Neue*/
+.bebas-neue-regular {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  } 
+h1{
+    line-height: 1.25;
+    color: var(--color-lightpink-white);
+    font-size: 2.5rem;
+    letter-spacing: 0.25rem;
+    vertical-align: baseline;
+}
+h2{
+    font-size: 2.5rem;
+    background-color:rgba(18 18 18 / 75%);
+}
+h3{
+    font-size: 1.5rem;
+}
+h4{
+    font-size: 1.25rem;
+    background-color:rgba(255 255 255 / 50%);
+    color: black;
+}
+h5{
+    font-size: 1rem;
+}
+h6{
+    font-size: 1rem;
+}
+body{
+    background-color: var(--color-dark-purple);
+    background-image: linear-gradient(var(--color-dark-purple), white);
+    background: var(--color-dark-purple);
+    background: linear-gradient(var(--color-dark-purple), white);
+    font-family: 'Red Hat Display', 'Lucida Sans Unicode', 
+                'Lucida Grande', 'Lucida Sans', 
+                Arial, sans-serif;
+    font-size: 1rem;
+    vertical-align: baseline;
+    text-align: center;
+    font-weight: 500;
+}
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+svg.header_icon {
+    display: inline;
+    height: 5.5rem;
+    aspect-ratio: 1.25;
+    vertical-align: center;
+    fill: currentColor;
+
+}
+svg.account_icon {
+    float: right;
+    display: inline;
+    height: 6rem;
+    width: 6rem;
+    fill: var(--color-lightpink-white);
+
+}
+
+a:link{
+    color: white;
+}
+a:visited{
+    color: var(--color-hot-pink);
+}
+a:hover{
+    color:white ;
+}
+a:active{
+    color: var(--color-light-tan);
+}
+
+
+/* body font: PT Sans */
+.red-hat display-body {
+    font-family: "Red Hat Display", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+
+  
