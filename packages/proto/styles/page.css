@@ -9,10 +9,11 @@ header {
     flex-wrap: wrap;
     align-items: baseline;
     justify-content: space-between;
-    padding: 0.25rem;
+    padding: 2rem;
     gap: 2rem;
-
+    margin-bottom: 1rem;
 }
+
 body{
     background-color: var(--color-dark-purple);
     background-image: linear-gradient(var(--color-dark-purple), white);
@@ -27,26 +28,11 @@ body{
     font-weight: 500;
 }
 
-/* .header a {
-    float: left;
-    color: black;
-    text-align: center;
-    padding: 12px;
-    text-decoration: none;
-    font-size: 18px; 
-    line-height: 25px;
-    border-radius: 4px;
-  } */
-
 
 .header a.active {
     background-color: var(--color-hot-pink);
     color: white;
 }
-
-/* .header-right {
-    float: right;
-} */
 
 .page {
     display: flex;
@@ -73,7 +59,10 @@ h1, h2, h3, h4, h5, h6{
                 serif;
 }
 img {
-    width: 100%
+
+    /* display: block; */
+    /* height: 20vh; */
+    width: 100%;
 }
 
 /*title fonts: Bebas Neue*/
@@ -140,6 +129,7 @@ svg.account_icon {
     display: inline;
     height: 6rem;
     width: 6rem;
+    scale: 0.60;
     fill: var(--color-lightpink-white);
 
 }
