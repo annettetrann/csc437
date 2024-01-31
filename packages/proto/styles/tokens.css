@@ -3,4 +3,8 @@
     --color-lightpink-white: #F9DEFF;
     --color-hot-pink: rgb(255, 100, 203);
     --color-light-tan: rgb(245, 224, 197);
+
+    --font-size-regular: 2.5rem;
+    --font-size-small: 1.5rem;
+    --font-size-body: 1rem;
 }

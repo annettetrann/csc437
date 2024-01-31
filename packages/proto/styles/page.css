@@ -21,11 +21,12 @@ body{
     font-family: 'Red Hat Display', 'Lucida Sans Unicode', 
                 'Lucida Grande', 'Lucida Sans', 
                 Arial, sans-serif;
-    font-size: 1rem;
+    font-size: var(--font-size-body);
     vertical-align: baseline;
     text-align: center;
     font-weight: 500;
 }
+
 /* .header a {
     float: left;
     color: black;
@@ -38,7 +39,6 @@ body{
   } */
 
 
-/* Style the active/current link*/
 .header a.active {
     background-color: var(--color-hot-pink);
     color: white;
@@ -49,10 +49,6 @@ body{
 } */
 
 .page {
-    /* background-color: var(--color-dark-purple);
-    background-image: linear-gradient(var(--color-dark-purple), white);
-    background: var(--color-dark-purple);
-    background: linear-gradient(var(--color-dark-purple), white); */
     display: flex;
     flex-basis: 100%;
     overflow: auto;
@@ -89,16 +85,16 @@ img {
 h1{
     line-height: 1.25;
     color: var(--color-lightpink-white);
-    font-size: 2.5rem;
+    font-size: var(--font-size-regular);
     letter-spacing: 0.25rem;
     vertical-align: baseline;
 }
 h2{
-    font-size: 2.5rem;
+    font-size: var(--font-size-regular);
     background-color:rgba(18 18 18 / 75%);
 }
 h3{
-    font-size: 1.5rem;
+    font-size: var(--font-size-small);
 }
 h4{
     font-size: 1.25rem;
@@ -106,10 +102,10 @@ h4{
     color: black;
 }
 h5{
-    font-size: 1rem;
+    font-size: var(--font-size-body);
 }
 h6{
-    font-size: 1rem;
+    font-size: var(--font-size-body);
 }
 body{
     background-color: var(--color-dark-purple);
@@ -119,7 +115,7 @@ body{
     font-family: 'Red Hat Display', 'Lucida Sans Unicode', 
                 'Lucida Grande', 'Lucida Sans', 
                 Arial, sans-serif;
-    font-size: 1rem;
+    font-size: var(--font-size-body);
     vertical-align: baseline;
     text-align: center;
     font-weight: 500;

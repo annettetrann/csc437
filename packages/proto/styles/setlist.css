@@ -1,0 +1,9 @@
+.setlist {
+    display: grid;
+    align-items: baseline;
+    vertical-align: auto;
+}
+
+.setlist > header {
+    flex-basis: min-content;
+}
