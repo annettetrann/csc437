@@ -6,6 +6,9 @@
         <link rel="stylesheet" href="/styles/setlist.css"/>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <script type="module" src="/components/drop-down.ts"></script>
+        <script type="module" src="/components/user-panel.ts"></script>
+        <script type="module" src="/components/toggle-switch.ts"></script>
         <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     </head>
     <article class="Set List">
@@ -16,13 +19,22 @@
             Set List
         </nav>
         <header>
-            <img class="header_logo" src="images/scLogo.png" alt="logo" />
-             <h1>
-             SetList
-            </h1>
-            <svg class="account_icon">
-                <use href="/icons/symbols.svg#icon-profile" />
-            </svg>
+            <a href="index.html">
+                <img class="header_logo" src="/images/scLogo.png" alt="logo" />
+            </a>    
+            <h1>
+                SetList
+               </h1>
+            <drop-down>
+                <svg class="account_icon">
+                    <use href="/icons/symbols.svg#icon-profile" />
+                </svg>
+                <user-panel 
+                    slot="menu" 
+                    class="user-dropdown">
+                    <span slot="name">Annette Tran</span>
+                </user-panel>
+            </drop-down>
         </header>
         <h2>ODESZA @ Santa Barbara Bowl</h2>
         <h3 style="background-color: var(--color-lightpink-white);">September 30th, 2023</h3>

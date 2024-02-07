@@ -11,6 +11,7 @@
         <script type="module" src="/components/drop-down.ts"></script>
         <script type="module" src="/components/user-panel.ts"></script>
         <script type="module" src="/components/toggle-switch.ts"></script>
+        <script type="module" src="/components/artist-card.ts"></script>
     </head>
     <body>
         <article>
@@ -24,62 +25,49 @@
                 <h1>
                     Soundwave Collective
                 </h1>
-                    <drop-down>
-                        <svg class="account_icon">
-                            <use href="/icons/symbols.svg#icon-profile" />
-                        </svg>
-                        <user-panel 
-                            slot="menu" 
-                            class="user-dropdown">
-                            <span slot="name">Annette Tran</span>
-                        </user-panel>
-                    </drop-down>
+                <drop-down>
+                    <svg class="account_icon">
+                        <use href="/icons/symbols.svg#icon-profile" />
+                    </svg>
+                    <user-panel 
+                        slot="menu" 
+                        class="user-dropdown">
+                        <span slot="name">Annette Tran</span>
+                    </user-panel>
+                </drop-down>
             </header>
             <img src="/images/concert.jpg"/>
 
             <h2>Artists</h2>
             <section>
                 <div class="artists">
-                    <div>
-                        <a href="tours.html">
-                            <img src="/images/artist_odesza.jpeg"/>
-                        </a>
-                        <a href="tours.html">
-                            <h3>
-                                ODESZA
-                            </h3>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="tours.html">
-                            <img src="/images/artist_fredagain.jpeg"/>
-                        </a>
-                        <a href="tours.html">
-                            <h3>
-                                Fred Again...
-                            </h3>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="tours.html">
-                            <img src="/images/artists_davidguetta.jpeg"/>
-                        </a>
-                        <a href="tours.html">
-                            <h3>
-                                David Guetta
-                            </h3>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="tours.html">
-                            <img src="/images/artists_calvinharris.jpeg"/>
-                        </a>
-                        <a href="tours.html">
-                            <h3>
-                                Calvin Harris
-                            </h3>
-                        </a>
-                    </div>
+                    <a href="tours.html">
+                        <artist-card class="artist-card">
+                            <img slot="artistImage" src="/images/artist_odesza.jpeg"/>
+                            <span slot="artistName">ODESZA</span> 
+                            
+                        </artist-card>
+                    </a>   
+                    <a href="tours.html">
+                        <artist-card class="artist-card">
+                            <img slot="artistImage" src="/images/artist_fredagain.jpeg"/>
+                            <span slot="artistName">Fred Again...</span> 
+                        </artist-card>
+                    </a>     
+                    <a href="tours.html">
+                        <artist-card class="artist-card">
+                            <img slot="artistImage" src="/images/artists_davidguetta.jpeg"/>
+                            <span slot="artistName">David Guetta</span> 
+                            
+                        </artist-card>
+                    </a>
+                    <a href="tours.html">
+                        <artist-card class="artist-card">
+                            <img slot="artistImage" src="/images/artists_calvinharris.jpeg"/>
+                            <span slot="artistName">Calvin Harris</span> 
+                            
+                        </artist-card>
+                    </a> 
                 </div>
             </section>
         </article>
