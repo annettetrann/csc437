@@ -8,6 +8,9 @@
         <link rel="stylesheet" href="/styles/page.css"/>
         <link rel="stylesheet" href="/styles/tokens.css"/>
         <link rel="stylesheet" href="/styles/artists.css"/>
+        <script type="module" src="/components/drop-down.ts"></script>
+        <script type="module" src="/components/user-panel.ts"></script>
+        <script type="module" src="/components/toggle-switch.ts"></script>
     </head>
     <body>
         <article>
@@ -15,17 +18,22 @@
                 Home
             </nav>
             <header>
-                <img class="header_logo" src="/images/scLogo.png" alt="logo" />
+                <a href="index.html">
+                    <img class="header_logo" src="/images/scLogo.png" alt="logo" />
+                </a>    
                 <h1>
                     Soundwave Collective
                 </h1>
-                <a href="#">
-                    <svg class="account_icon">
-                        <use href="/icons/symbols.svg#icon-profile" />
-                    </svg>
-                </a>
-            
-
+                    <drop-down>
+                        <svg class="account_icon">
+                            <use href="/icons/symbols.svg#icon-profile" />
+                        </svg>
+                        <user-panel 
+                            slot="menu" 
+                            class="user-dropdown">
+                            <span slot="name">Annette Tran</span>
+                        </user-panel>
+                    </drop-down>
             </header>
             <img src="/images/concert.jpg"/>
 

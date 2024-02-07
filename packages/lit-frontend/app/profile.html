@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/styles/page.css"/>
+        <link rel="stylesheet" href="/styles/tokens.css"/>
+        <link rel="stylesheet" href="/styles/profile.css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+        <script type="module" src="/components/drop-down.ts"></script>
+        <script type="module" src="/components/user-panel.ts"></script>
+        <script type="module" src="/components/user-profile.ts"></script>
+        <script type="module" src="/components/rest.ts"></script>
+    </head>
+    <body>
+        <header>
+            <a href="index.html">
+                <img class="header_logo" src="/images/scLogo.png" alt="logo" />
+            </a>
+            <h1>
+                Profile
+            </h1>
+                <drop-down>
+                    <svg class="account_icon">
+                        <use href="/icons/symbols.svg#icon-profile" />
+                    </svg>
+                    <user-panel 
+                        slot="menu" 
+                        class="user-dropdown">
+                        <span slot="name">Annette Tran</span>
+                    </user-panel>
+                </drop-down>
+        </header>
+        <main class="page">
+            <user-profile path="/profiles/annette"></user-profile>
+            <user-profile-edit 
+             path="/profiles/annette"></user-profile-edit>
+        </main>
+    </body>
+</html>
