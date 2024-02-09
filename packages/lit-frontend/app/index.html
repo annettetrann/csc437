@@ -12,6 +12,8 @@
         <script type="module" src="/components/user-panel.ts"></script>
         <script type="module" src="/components/toggle-switch.ts"></script>
         <script type="module" src="/components/artist-card.ts"></script>
+        <script type="module" src="/components/artist-list.ts"></script>
+   
     </head>
     <body>
         <article>
@@ -39,7 +41,7 @@
             <img src="/images/concert.jpg"/>
 
             <h2>Artists</h2>
-            <section>
+            <!-- <section>
                 <div class="artists">
                     <a href="tours.html">
                         <artist-card class="artist-card">
@@ -69,7 +71,30 @@
                         </artist-card>
                     </a> 
                 </div>
-            </section>
+                
+            </section> -->
+            <artist-list></artist-list>
         </article>
+        <script>
+            const artists = [
+                {
+                    name: "ODESZA",
+                    image: "/images/artist_odesza.jpeg"
+                },
+                {
+                    name: "Fred Again...",
+                    image: "/images/artist_fredagain.jpeg"
+                },
+                {
+                    name: "David Guetta",
+                    image: "/images/artists_davidguetta.jpeg"
+                },
+                {
+                    name: "Calvin Harris",
+                    image: "/images/artists_calvinharris.jpeg"
+                }
+            ]
+            document.querySelector('artist-list').artists = artists;
+        </script>
     </body>
 </html>

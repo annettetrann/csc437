@@ -23,6 +23,7 @@
     --color-h2-background: rgba(18 18 18 / 75%);
 
     --color-h3-text: white;
+    --color-h3-background: var(--color-lightpink-white);
 
     --font-size-large: 3rem;
     --font-size-regular: 2.5rem;
@@ -41,12 +42,14 @@
         --color-background-main: white;
         --color-background-secondary: var(--color-dark-purple);
         --color-accent: var(--color-dark-purple);
+        
 
         --color-body-text: white;
 
         --color-h2-background: rgba( 255 255 255 / 75%);
 
         --color-h3-text: white;
+        --color-h3-background: var(--color-dark-purple);
 
         --color-header-background: rgba(228, 229, 241);
         --color-header-text-color: var(--color-dark-purple);
