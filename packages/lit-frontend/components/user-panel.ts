@@ -43,7 +43,7 @@ export class UserPanelElement extends LitElement {
 
   static styles = css`
     * {
-      margin: 0;
+      margin: 0.5;
       box-sizing: border-box;
     }
     ul {
@@ -51,17 +51,20 @@ export class UserPanelElement extends LitElement {
       display: flex;
       flex-direction: column;
       background-color: var(--color-background-page);
-      color: var(--color-text);
-      border: 1px solid var(--color-accent);
+      color: var(--color-mode-light-accent);
+      // border: 1px solid var(--color-accent);
       border-radius: var(--size-corner-medium);
       padding: var(--size-spacing-small);
       width: min-content;
       box-shadow: var(--shadow-dropdown);
+      align-text: center;
     }
     li {
       white-space: nowrap;
-      border-color: var(--color-accent);
+      border-color: var(--color-mode-lw);
       border-width: var(--line-weight-superfine);
+      padding: 0.5em;
+
     }
     li.header {
       display: flex;

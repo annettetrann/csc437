@@ -52,14 +52,14 @@ class DropDownElement extends LitElement {
     slot[name="menu"] {
       font-family: var(--font-family-body);
       font-size: var(--font-size-body);
-        color: black;
+      color: var(--color-mode-light-accent);
       border-radius: 10px;
       display: none;
       position: absolute;
       top: 100%;
       left: 0;
       border: 1px solid;
-      background: var(--color-lightpink-white);
+      background: var(--color-mode-lw);
     }
 
     #is-shown:checked ~ slot[name="menu"] {

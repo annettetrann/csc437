@@ -14,7 +14,7 @@
 }
 
 .artist-card{
-    border: 3px solid var(--color-accent);
+    border: 3px solid var(--color-mode-light-accent);
     text-align: center;
     color: white;
     margin: 4px 2px;

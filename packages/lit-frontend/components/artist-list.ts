@@ -7,7 +7,7 @@ class ArtistList extends LitElement {
     @property({ type: Array})
     artists = [];
 
-    sort() {
+    sortAlphabetically() {
         this.artists.sort((a, b) => a.name.localeCompare(b.name));
         this.requestUpdate();
     }
@@ -25,7 +25,9 @@ class ArtistList extends LitElement {
     render() {
         return html`
         <section>
-            <button @click="${this.sort}">Sort</button>
+            <div class="sort">
+                <button @click="${this.sortAlphabetically}">Sort Alp</button>
+            </div>
             <div class="artists">
             ${this.artists.map((artist) => this.renderArtist(artist))}
             </div>
@@ -49,7 +51,7 @@ class ArtistList extends LitElement {
     }
     
     .artist-card{
-        border: 3px solid var(--color-accent);
+        border: 3px solid var(--color-mode-light-accent);
         text-align: center;
         color: white;
         margin: 4px 2px;
@@ -60,6 +62,26 @@ class ArtistList extends LitElement {
         border-radius: 10px 10px 10px 10px;
         font-family: var(--font-family-headers);
     
+    }
+
+    .sort {
+        display: flex;
+        justify-content: flex-left;
+    }
+
+    .sort > button {
+        font-size: 1em;
+        margin: 1em;
+        padding: 0.25em 1em;
+        border: 2px solid var(--color-mode-light-accent);
+        border-radius: 3px;
+        background-color: var(--color-mode-lw);
+        color: var(--color-mode-light-accent);
+        cursor: pointer;
+    }
+
+    .sort > button:hover {
+        background-color: var(--color-mode-light-accent);
     }
 
     img {

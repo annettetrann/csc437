@@ -10,7 +10,7 @@ class ArtistCard extends LitElement {
     artistPicPath: string = "";
     
     @property({ type: Array})
-    genres: string[] = ["electronica", "house", "techno"];
+    genres: string[] = [];
 
     
     render() {
@@ -38,13 +38,6 @@ static styles = css`
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         background-color: rgba(255, 255, 255, 0.5);
     }
-
-    // article {
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    // gap: var(--size-spacing-medium);
-    // }
 
     label {
         cursor: pointer;
