@@ -21,7 +21,7 @@
     --color-nav-active-color: var(--color-light-tan);
     --color-nav-visited-color: var(--color-hot-pink);
 
-    /* --color-header-background: black; */
+    --color-header-background: black;
     --color-header-a-active: var(--color-hot-pink);
     --color-header-text-color: var(--color-lightpink-white);
 

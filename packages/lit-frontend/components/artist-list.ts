@@ -82,6 +82,7 @@ class ArtistList extends LitElement {
 
     .sort > button:hover {
         background-color: var(--color-mode-light-accent);
+        color: white;
     }
 
     img {
