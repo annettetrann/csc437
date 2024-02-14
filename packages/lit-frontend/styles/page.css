@@ -2,7 +2,7 @@
     box-sizing: border-box;
 } */
 header {
-    background-color: var(--color-header-background);
+    /* background-color: var(--color-header-background); */
     overflow: visible;
     display: flex;
     flex-wrap: no-wrap;
