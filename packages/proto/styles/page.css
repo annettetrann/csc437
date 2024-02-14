@@ -24,6 +24,7 @@ header {
     scale: 150%;
     fill: currentColor;
 }
+
 body{
     background-color: var(--color-dark-purple);
     background-image: linear-gradient(var(--color-dark-purple), white);
