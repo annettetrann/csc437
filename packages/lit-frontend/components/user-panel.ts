@@ -45,6 +45,7 @@ export class UserPanelElement extends LitElement {
     * {
       margin: 0.5;
       box-sizing: border-box;
+      z-index: 1;
     }
     ul {
       list-style: none;

@@ -268,13 +268,13 @@ export class UserProfileEditElement extends UserProfileElement {
       },
       body: JSON.stringify(json)
     })
-      .then((response) => {
+      .then((response) => { //if response comes back, then populate json
         if (response.status === 200) {
           return response.json();
         }
         return null;
       })
-      .then((json: unknown) => {
+      .then((json: unknown) => { //if the json exists 
         if (json) {
           console.log("PUT request successful:", json);
           this.profile = json as Profile;

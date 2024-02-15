@@ -47,3 +47,8 @@ app.post("/api/profiles", (req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+app.put("/api/profiles/:userid", (req, res) => {
+  const { userid } = req.params;
+  const newProfile = req.body;
+  import_profiles.default.update(userid, newProfile).then((profile) => res.json(profile)).catch((err) => res.status(404).end());
+});

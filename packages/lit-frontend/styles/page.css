@@ -143,6 +143,7 @@ li{
 
 nav {
     color: var(--color-nav-active-color);
+    z-index: 1;
 }
 a:link{
     color: var(--color-mode-opp);
@@ -169,6 +170,7 @@ a:active{
 .user-dropdown > ul {
     padding-left: 20%;
     padding-right:20%;
+    z-index: 1;
     /* display: none; */
     color: black;
     /* background-color: white; */
