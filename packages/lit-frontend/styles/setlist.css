@@ -8,7 +8,16 @@
     flex-basis: min-content;
 }
 
-.setlist-item { 
+.setlist > li {
+    color: var(--color-mode-opp);
+}
+
+.setlist-bg {
+    background-color: var(--color-h3-background);
+    color: var(--color-mode-main);
+}
+
+/* .setlist-item { 
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -19,6 +28,4 @@
     border-radius: 10px;
     background-color: var(--color-lightpink-white);
     opacity: 0.75;
-    
-
-}
+} */

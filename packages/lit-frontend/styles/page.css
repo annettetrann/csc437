@@ -27,6 +27,32 @@ header {
     margin-bottom: 75px;
 }
 
+.header-hero {
+    position: relative;
+    /* -webkit-box-reflect: below -50px linear-gradient(transparent, var(--color-mode-opp)); */
+    /* color: var(--color-mode-opp); */
+    font-family: var(--font-family-headers);
+    /* margin-bottom: px; */
+}
+
+.header-hero > h3{
+    color: var(--color-mode-light-accent);
+    line-height: 0.5;
+    /* -webkit-box-reflect: below -50px linear-gradient(transparent, var(--color-mode-opp)); */
+    /* color: var(--color-mode-opp); */
+    font-family: var(--font-family-headers);
+    /* margin-bottom: px; */
+}
+
+.header-hero > a:visited {
+    opacity: 0;
+    color: white;
+    line-height: 0;
+    /* -webkit-box-reflect: below -50px linear-gradient(transparent, var(--color-mode-opp)); */
+    /* color: var(--color-mode-opp); */
+    /* margin-bottom: px; */
+}
+
 .hero span {
     display: inline-block;
     color: var(--color-mode-light-accent);
@@ -138,7 +164,7 @@ svg.account_icon {
 
 li{
     font-size: var(--font-size-body);
-    color: black;
+    color: var(--color-mode-opp);
 }
 
 nav {
@@ -181,4 +207,8 @@ a:active{
     color: black;
     /* background-color: white; */
     text-align: center;
+}
+.setlist-bg {
+    background-color: var(--color-h3-background);
+    color: var(--color-mode-main);
 }

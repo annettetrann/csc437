@@ -23,19 +23,13 @@ export class UserPanelElement extends LitElement {
             Dark Mode
           </toggle-switch>
         </li>
-        <li>
-          <preset-buttons
-            name="font-size"
-            .options=${[12, 14, 16, 20, 24]}
-            value="16"
-            @change=${this._selectFontSize}>
-            Font Size
-          </preset-buttons>
-        </li>
+
         <slot></slot>
-      
         <li>
           <slot name="logout">Sign out&hellip;</slot>
+        </li>
+        <li>
+            <a href="signup.html">Sign Up</a>
         </li>
       </ul>
     `;
@@ -88,6 +82,9 @@ export class UserPanelElement extends LitElement {
       line-height: var(--font-line-height-display);
       white-space: normal;
       text-align: right;
+    }
+    a {
+      color: var(--color-mode-light-accent);
     }
   `;
 

@@ -47,6 +47,7 @@
         --color-mode-main: white;
         --color-mode-opp: black;
         --color-mode-lw: var(--color-light-purple);
+
         --color-mode-light-accent: var(--color-dark-purple);
 
         --color-background-main: white;
@@ -55,9 +56,9 @@
         
 
 
-        --color-mode-main: black;
+        --color-mode-main: white;
         /* --color-mode-light-accent: var(--color-lightpink-white); */
-        --color-mode-lw: #606368;
+        /* --color-mode-lw: white; */
         --color-mode-opp: white;
 
         --color-body-text: white;

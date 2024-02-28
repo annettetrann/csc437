@@ -1,39 +1,18 @@
-import { css, html, LitElement } from "lit";
-import {
-  customElement,
-  property,
-  state
-} from "lit/decorators.js";
+import { css, html, LitElement, unsafeCSS} from "lit";
+import {customElement, property } from "lit/decorators.js";
+import { Profile } from "../ts-models";
+import * as App from "../app";
 import { serverPath } from "./rest";
-import { Profile } from "./models/profile";
 
 @customElement("user-profile")
 export class UserProfileElement extends LitElement {
-  @property()
-  path: string = "";
+  @property({ attribute: false })
+  using?: Profile;
 
-  @state()
-  profile?: Profile;
-
-  connectedCallback() {
-    if (this.path) {
-      this._fetchData(this.path);
-    }
-    super.connectedCallback();
+  get profile() {
+    return this.using || ({} as Profile);
   }
-
-  attributeChangedCallback(
-    name: string,
-    oldValue: string,
-    newValue: string
-  ) {
-    console.log("attributeChanged", oldValue, newValue);
-    if (name === "path" && oldValue !== newValue && oldValue) {
-      this._fetchData(newValue);
-    }
-    super.attributeChangedCallback(name, oldValue, newValue);
-  }
-
+  
   render() {
     const {
       userid,
@@ -41,14 +20,13 @@ export class UserProfileElement extends LitElement {
       nickname,
       city,
       genres = []
-    } = (this.profile || {}) as Profile;
+    } = this.profile;
 
     const renderGenre = (s: string) => html`<dd>${s}</dd>`;
 
     return html`
       <section>
         ${this._renderAvatar()}
-
         <h1>${name}</h1>
         <dl>
           <dt>Username</dt>
@@ -86,15 +64,14 @@ export class UserProfileElement extends LitElement {
         --avatar-size: 100px;
         padding: var(--size-spacing-medium);
       }
-      * {
-        margin: 0;
-        box-sizing: border-box;
-      }
       section {
         display: grid;
         grid-template-columns: [key] 1fr [value] 2fr [end];
         gap: var(--size-spacing-xlarge);
         align-items: end;
+      }
+      h1 {
+        grid-column: value;
       }
       dl {
         display: grid;
@@ -138,18 +115,18 @@ export class UserProfileElement extends LitElement {
     `
   ];
 
-  _fetchData(path: string) {
-    fetch(serverPath(path))
-      .then((response) => {
-        if (response.status === 200) {
-          return response.json();
-        }
-        return null;
-      })
-      .then((json: unknown) => {
-        this.profile = json as Profile;
-      });
-  }
+  // _fetchData(path: string) {
+  //   fetch(serverPath(path))
+  //     .then((response) => {
+  //       if (response.status === 200) {
+  //         return response.json();
+  //       }
+  //       return null;
+  //     })
+  //     .then((json: unknown) => {
+  //       this.profile = json as Profile;
+  //     });
+  // }
 }
 
 @customElement("user-profile-edit")
@@ -229,59 +206,116 @@ export class UserProfileEditElement extends UserProfileElement {
       }
     );
 
-    reader.then((result: string) => {
-      this.profile = {
-        ...(this.profile as Profile),
-        avatar: result
+    // reader.then((result: string) => {
+    //   this.profile = {
+    //     ...(this.profile as Profile),
+    //     avatar: result
+    //   };
+    // });
+    reader
+      .then
+      //     (result: string) => {
+      //       this.profile = {
+      //   ...(this.profile as Profile),
+      //   avatar: result
+      // };
+      ();
+  }
+
+  _handleSubmit(event: Event) {
+    event.preventDefault(); // prevent browser from submitting form data itself
+
+    if (this.profile) {
+      // const avatar = this.profile?.avatar;
+      const target = event.target as HTMLFormElement;
+      const formdata = new FormData(target);
+      let entries = Array.from(formdata.entries())
+        .map(([k, v]) => (v === "" ? [k] : [k, v]))
+        .map(([k, v]) =>
+          k === "airports"
+            ? [k, (v as string).split(",").map((s) => s.trim())]
+            : [k, v]
+        );
+
+      // if (avatar) entries.push(["avatar", avatar]);
+
+      const json = Object.fromEntries(entries);
+
+      console.log("Submitting Form", json);
+
+      const msg: App.ProfileSaved = {
+        type: "ProfileSaved",
+        userid: this.profile?.userid,
+        profile: json as Profile
       };
-    });
+      const ev = new CustomEvent("mvu:message", {
+        bubbles: true,
+        composed: true,
+        detail: msg
+      });
+      this.dispatchEvent(ev);
+    }
   }
 
-  _handleSubmit(ev: Event) {
-    ev.preventDefault(); // prevent browser from submitting form data itself
 
-    const avatar = this.profile?.avatar;
-    const target = ev.target as HTMLFormElement;
-    const formdata = new FormData(target);
-    let entries = Array.from(formdata.entries())
-      .map(([k, v]) => (v === "" ? [k] : [k, v]))
-      .map(([k, v]) =>
-        k === "genres"
-          ? [k, (v as string).split(",").map((s) => s.trim())]
-          : [k, v]
-      );
+//   _handleSubmit(event: Event) {
+//     event.preventDefault(); // prevent browser from submitting form data itself
 
-    if (avatar) entries.push(["avatar", avatar]);
+//     if (this.profile) {
+//       // const avatar = this.profile?.avatar;
+//       const target = event.target as HTMLFormElement;
+//       const formdata = new FormData(target);
+//       let entries = Array.from(formdata.entries())
+//         .map(([k, v]) => (v === "" ? [k] : [k, v]))
+//         .map(([k, v]) =>
+//           k === "airports"
+//             ? [k, (v as string).split(",").map((s) => s.trim())]
+//             : [k, v]
+//         );
 
-    const json = Object.fromEntries(entries);
+//       // if (avatar) entries.push(["avatar", avatar]);
 
-    console.log("Submitting Form", json);
+//       const json = Object.fromEntries(entries);
 
-    this._putData(json);
-  }
+//       console.log("Submitting Form", json);
 
-  _putData(json: Profile) {
-    fetch(serverPath(this.path), {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(json)
-    })
-      .then((response) => { //if response comes back, then populate json
-        if (response.status === 200) {
-          return response.json();
-        }
-        return null;
-      })
-      .then((json: unknown) => { //if the json exists 
-        if (json) {
-          console.log("PUT request successful:", json);
-          this.profile = json as Profile;
-        }
-      })
-      .catch((err) =>
-        console.log("Failed to POST form data", err)
-      );
-  }
+//       const msg: App.ProfileSaved = {
+//         type: "ProfileSaved",
+//         userid: this.profile?.userid,
+//         profile: json as Profile
+//       };
+//       const ev = new CustomEvent("mvu:message", {
+//         bubbles: true,
+//         composed: true,
+//         detail: msg
+//       });
+//       this.dispatchEvent(ev);
+//     }
+//   }
+// }
+
+  // _putData(json: Profile) {
+  //   fetch(serverPath(this.path), {
+  //     method: "PUT",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify(json)
+  //   })
+  //     .then((response) => { //if response comes back, then populate json
+  //       if (response.status === 200) {
+  //         return response.json();
+  //       }
+  //       return null;
+  //     })
+  //     .then((json: unknown) => { //if the json exists 
+  //       if (json) {
+  //         console.log("PUT request successful:", json);
+  //         this.profile = json as Profile;
+  //       }
+  //     })
+  //     .catch((err) =>
+  //       console.log("Failed to POST form data", err)
+  //     );
+  // }
 }

@@ -7,6 +7,8 @@
         <script type="module" src="/components/drop-down.ts"></script>
         <script type="module" src="/components/user-panel.ts"></script>
         <script type="module" src="/components/toggle-switch.ts"></script>
+        <script type="module" src="/components/tour-card.ts"></script>
+        <script type="module" src="/components/tour-list.ts"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
@@ -35,7 +37,13 @@
                     </user-panel>
                 </drop-down>
             </header>
-            <section class="tours">
+            <div>
+                <h2>Tours</h2>
+                <tour-list></tour-list>
+            </div>
+
+
+            <!-- <section class="tours">
                     <div>
                         <a href="tour.html">
                             <img src="/images/tours_odesza_thelastgoodbye.png"/>
@@ -55,7 +63,21 @@
                                 In Return (2015)
                             </h3>
                     </div>
-            </section>
+            </section> -->
         </article>
+        <script>
+            const tours = [
+                {
+                    name: "The Last Goodbye (2023)",
+                    image: "/images/tours_odesza_thelastgoodbye.png"
+                },
+                {
+                    name: "In Return (2015)",
+                    image: "/images/tours_odesza_inreturn.jpeg"
+                }
+            ];
+            const tourList = document.querySelector('tour-list');
+            tourList.tours = tours;
+        </script>
     </body>
 </html>

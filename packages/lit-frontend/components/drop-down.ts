@@ -53,7 +53,7 @@ class DropDownElement extends LitElement {
       font-family: var(--font-family-body);
       font-size: var(--font-size-body);
       color: var(--color-mode-light-accent);
-      border-radius: 10px;
+      border-radius: 15px;
       display: none;
       position: absolute;
       top: 100%;
