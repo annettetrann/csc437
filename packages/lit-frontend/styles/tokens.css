@@ -1,0 +1,77 @@
+:root {
+    /* dark mode colors */
+    --color-dark-purple: rgb(62, 53, 130);
+    --color-lightpink-white: #F9DEFF;
+    --color-hot-pink: rgb(255, 100, 203);
+    --color-light-tan: rgb(245, 224, 197);
+    --color-light-black: rgb(26, 24, 24);
+    --color-light-purple: rgb(228, 229, 241);
+
+    --color-mode-main: black;
+    --color-mode-light-accent: var(--color-lightpink-white);
+    --color-mode-lw: #292929;
+    --color-mode-opp: white;
+
+    /* converting colors to default background colors */
+    --color-background-main: black;
+    --color-background-secondary: var(--color-dark-purple);
+
+    --color-accent: var(--color-hot-pink);
+
+    --color-nav-active-color: var(--color-light-tan);
+    --color-nav-visited-color: var(--color-hot-pink);
+
+    --color-header-background: black;
+    --color-header-a-active: var(--color-hot-pink);
+    --color-header-text-color: var(--color-lightpink-white);
+
+    --color-h2-background: rgba(18 18 18 / 75%);
+
+    --color-h3-text: white;
+    --color-h3-background: var(--color-lightpink-white);
+
+    
+    --font-size-large: 3rem;
+    --font-size-regular: 2.5rem;
+    --font-size-small: 1.5rem;
+    --font-size-body: 1rem;
+    --font-size-xsmall: 0.5rem;
+
+    --font-family-headers: "Bebas Neue", Cambria, 
+        "Noto Serif", "Bitstream Charter",serif;
+    --font-family-body: 'Red Hat Display', 'Lucida Sans Unicode', 
+        'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+    body.dark-mode {
+        /* --color-header-background: var(var(--color-light-tan)) */
+        --color-mode-main: white;
+        --color-mode-opp: black;
+        --color-mode-lw: var(--color-light-purple);
+
+        --color-mode-light-accent: var(--color-dark-purple);
+
+        --color-background-main: white;
+        --color-background-secondary: var(--color-dark-purple);
+        --color-accent: var(--color-dark-purple);
+        
+
+
+        --color-mode-main: white;
+        /* --color-mode-light-accent: var(--color-lightpink-white); */
+        /* --color-mode-lw: white; */
+        --color-mode-opp: white;
+
+        --color-body-text: white;
+
+        --color-h2-background: rgba( 255 255 255 / 75%);
+
+        --color-h3-text: white;
+        --color-h3-background: var(--color-dark-purple);
+
+        /* --color-header-background: var(--color-mode-main); */
+        --color-header-text-color: var(--color-dark-purple);
+       
+        --color-nav-active-color: var(--color-dark-purple);
+        --color-nav-visited-color: var(--color-hot-pink);
+    }
+}

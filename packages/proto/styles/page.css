@@ -1,0 +1,158 @@
+* {
+    box-sizing: border-box;
+}
+
+header {
+    background-color: var(--color-light-black);
+    overflow: hidden;
+    display: flex;
+    flex-wrap: no-wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.header_logo {
+    /* display: flex; */
+    /* height: 10rem; */
+
+    width: 128px;
+    aspect-ratio: 1;
+    /* vertical-align: center; */
+    scale: 150%;
+    fill: currentColor;
+}
+
+body{
+    background-color: var(--color-dark-purple);
+    background-image: linear-gradient(var(--color-dark-purple), white);
+    background: var(--color-dark-purple);
+    background: linear-gradient(var(--color-dark-purple), white);
+    font-family: vars(--font-family-body);
+    font-size: var(--font-size-body);
+    vertical-align: baseline;
+    text-align: center;
+    font-weight: 500;
+}
+
+
+.header a.active {
+    background-color: var(--color-hot-pink);
+    color: white;
+}
+
+.page {
+    display: flex;
+    flex-basis: 100%;
+    overflow: auto;
+    margin: 0;
+    padding: var(--size-spacing-medium);
+}
+
+
+h1, h2, h3, h4, h5, h6{
+    /* background-color:#121212; */
+    color: var(--color-lightpink-white);
+    line-height: 2;
+    text-align: center;
+    border: white;
+    font-family: vars(--font-family-headers);
+}
+
+img {
+    /* display: block; */
+    /* height: 20vh; */
+    width: 100%;
+}
+
+/*title fonts: Bebas Neue*/
+.bebas-neue-regular {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  } 
+h1{
+    line-height: 1.25;
+    color: var(--color-lightpink-white);
+    font-size: var(--font-size-large);
+    letter-spacing: 0.50rem;
+    vertical-align: baseline;
+}
+h2{
+    font-size: var(--font-size-regular);
+    background-color:rgba(18 18 18 / 75%);
+}
+h3{
+    color: var(--color-light-black);
+    font-size: var(--font-size-small);
+}
+h4{
+    font-size: 1.25rem;
+    background-color:rgba(255 255 255 / 50%);
+    color: black;
+}
+h5{
+    font-size: var(--font-size-body);
+}
+h6{
+    font-size: var(--font-size-body);
+}
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+svg.header_icon {
+    display: inline;
+    height: 5.5rem;
+    aspect-ratio: 1.25;
+    vertical-align: center;
+    fill: currentColor;
+
+}
+svg.account_icon {
+    float: right;
+    display: inline;
+    height: 6rem;
+    width: 6rem;
+    scale: 0.60;
+    fill: var(--color-lightpink-white);
+
+}
+
+li{
+    font-size: var(--font-size-body);
+    color: black;
+}
+
+nav {
+    color: var(--color-light-tan);
+}
+a:link{
+    color: white;
+}
+a:visited{
+    color: var(--color-hot-pink);
+}
+a:hover{
+    color:white ;
+}
+a:active{
+    color: var(--color-light-tan);
+}
+
+
+/* body font: PT Sans */
+.red-hat display-body {
+    font-family: "Red Hat Display", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+
+  
