@@ -1,7 +1,16 @@
-/* * {
-    box-sizing: border-box;
-} */
-header {
+import { customElement, property } from 'lit/decorators.js';
+import * as App from '../app';
+import { html, css } from 'lit';
+import '../components/user-panel';
+import '../components/drop-down';
+import '../components/toggle-switch';
+import '../components/tourinfo-card';
+import '../components/tourinfo-list';
+
+import { Profile } from "../ts-models";
+
+
+const pageCSS = css`header {
     /* background-color: var(--color-header-background); */
     overflow: visible;
     display: flex;
@@ -216,6 +225,106 @@ a:active{
     color: var(--color-mode-main);
 }
 
+.tour-city {
+    border: 3px solid var(--color-hot-pink);
+    text-align: center;
+    color: var(--color-hot-pink);
+    margin: 4px 2px;
+    padding: 15px 32px;
+    font-size: var(--font-size-body);
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.75);
+    /* opacity: 0.50; */
+    border-radius: 10px 10px 10px 10px;
+    font-family: var(--font-family-headers);
+}
 
-/* headers */
+.tour-city:hover {
+    background-color: var(--color-hot-pink);
+    color: var(--color-lightpink-white);
+}
+
+.tour-city > a {
+    text-decoration: none;
+    color: var(--color-dark-purple);
+}`;
+
+@customElement('tour-page')
+class TourView extends App.View {
+    constructor() {
+        super();
+      }
+    
+    static styles = pageCSS;
+    @property()
+
+    get profile() {
+        return this.getFromModel<Profile>('profile');
+    }
+
+    getTourInfo() {
+        const tourInfo = [
+            {
+                date: "July 29th",
+                location: "Seattle, WA"
+            },
+            {
+                date: "July 30th",
+                location: "Seattle, WA"
+            },
+            {
+                date: "July 31st",
+                location: "Seattle, WA"
+            },
+            {
+                date: "August 17th",
+                location: "Phoenix, AZ"
+            },
+            {
+                date: "August 19th",
+                location: "Austin, TX"
+            },
+            {
+                date: "September 30th",
+                location: "Santa Barbara, CA"
+            }
+        ]
+        return tourInfo;
+    }
+
+    render() {
+        return html`
+            <article class="tours">
+            <nav aria-label="breadcrumb">
+                <a href="index.html">Home</a> &gt;
+                <a href="tours.html">ODESZA</a> &gt;
+                The Last Goodbye (2023)
+            </nav>
+            <header>
+                <div class="header-hero">
+                    <a href="index.html">
+                        <h3>SOUNDWAVE</h3>
+                        <h3>COLLECTIVE</h3>
+                    </a>
+                </div>
+                <drop-down>
+                    <svg class="account_icon">
+                        <use href="/icons/symbols.svg#icon-profile" />
+                    </svg>
+                    <user-panel 
+                        slot="menu" 
+                        class="user-dropdown">
+                        <span slot="name">${this.profile.name}</span>
+                    </user-panel>
+                </drop-down>
+            </header>
+            <img src="/images/tour_odesza_tlg.jpeg"/>
+            <section class="tour dates & locations">
+                <h2>Dates // Locations</h2>
+                <tourinfo-list .tourInfo=${this.getTourInfo()}></tourinfo-list>
+            </section>
+        </article>`;
+    }
+
+}
 

@@ -49,7 +49,8 @@ app.listen(port, () => {
 app.put("/api/profiles/:userid", (req: Request, res: Response) => {
   const { userid } = req.params;
   const newProfile = req.body;
-
+  console.log(newProfile, userid)
+  // return;
   profiles
     .update(userid, newProfile)
     .then((profile: Profile) => res.json(profile))

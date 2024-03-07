@@ -1,4 +1,16 @@
-/* * {
+import { customElement, property } from 'lit/decorators.js';
+import * as App from '../app';
+import { html, css } from 'lit';
+import '../components/artist-list';
+import '../components/user-panel';
+import '../components/drop-down';
+import '../components/toggle-switch';
+import '../components/page-header';
+
+
+import { Profile } from "../ts-models";
+
+const pageCSS = css`/* * {
     box-sizing: border-box;
 } */
 header {
@@ -219,3 +231,67 @@ a:active{
 
 /* headers */
 
+
+`
+
+@customElement('index-page')
+class IndexView extends App.View {
+  constructor() {
+    super();
+  }
+
+  static styles = pageCSS;
+
+  @property()
+  get profile() {
+    return this.getFromModel<Profile>('profile');
+  }
+
+  getArtistList() {
+    const artists = [
+        {
+            name: "ODESZA",
+            image: "/images/artist_odesza.jpeg"
+        },
+        {
+            name: "Fred Again...",
+            image: "/images/artist_fredagain.jpeg"
+        },
+        {
+            name: "David Guetta",
+            image: "/images/artists_davidguetta.jpeg"
+        },
+        {
+            name: "Calvin Harris",
+            image: "/images/artists_calvinharris.jpeg"
+        }
+    ]
+    return artists;
+    // document.querySelector('artist-list').artists = artists;
+  }
+  render() {
+    return html`
+        <nav aria-label="breadcrumb">
+            Home
+        </nav>
+        <header>
+            <drop-down>
+                <svg class="account_icon">
+                    <use href="/icons/symbols.svg#icon-profile" />
+                </svg>
+                <user-panel 
+                    slot="menu" 
+                    class="user-dropdown">
+                    <span slot="name">${this.profile.name}</span>
+                </user-panel>
+            </drop-down>
+        </header>
+        <article>
+        <div class="hero">
+            <span>SOUNDWAVE COLLECTIVE</span>
+        </div>
+        <h2>Artists</h2>
+        <artist-list .artists=${this.getArtistList()}></artist-list>
+        </article>`;
+  }
+}

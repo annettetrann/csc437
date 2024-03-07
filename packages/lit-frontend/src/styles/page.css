@@ -1,8 +1,5 @@
-/* * {
-    box-sizing: border-box;
-} */
+
 header {
-    /* background-color: var(--color-header-background); */
     overflow: visible;
     display: flex;
     flex-wrap: no-wrap;
@@ -215,7 +212,3 @@ a:active{
     background-color: var(--color-h3-background);
     color: var(--color-mode-main);
 }
-
-
-/* headers */
-

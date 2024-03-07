@@ -1,7 +1,15 @@
-/* * {
-    box-sizing: border-box;
-} */
-header {
+import { customElement, property } from 'lit/decorators.js';
+import * as App from '../app';
+import { html, css } from 'lit';
+import '../components/user-panel';
+import '../components/drop-down';
+import '../components/toggle-switch';
+import '../components/tour-card';
+import '../components/tour-list';
+
+import { Profile } from "../ts-models";
+
+const pageCSS = css`header {
     /* background-color: var(--color-header-background); */
     overflow: visible;
     display: flex;
@@ -217,5 +225,104 @@ a:active{
 }
 
 
-/* headers */
 
+
+.tours {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 0 4 rem;
+    align-items: baseline;
+    align-content: space-around;
+    justify-content: space-evenly;
+    column-gap: 1rem;
+}
+
+.tour{
+    display: block;
+    height: 20vh;
+    width: auto;
+}
+
+.tour-card{
+    border: 3px solid var(--color-mode-light-accent);
+    text-align: center;
+    color: white;
+    margin: 4px 2px;
+    padding: 15px 32px;
+    font-size: var(--font-size-small);
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 10px 10px 10px 10px;
+    font-family: var(--font-family-headers);
+
+}
+
+.tour-card:hover{
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 3px solid var(--color-mode-light-accent);
+    color: var(--color-mode-light-accent);
+}
+`;
+
+
+@customElement('tours-page')
+class ToursView extends App.View {
+    constructor() {
+        super();
+      }
+    
+    static styles = pageCSS;
+    @property()
+
+    get profile() {
+        return this.getFromModel<Profile>('profile');
+    }
+
+    getTourList() {
+        const tours = [
+            {
+                name: "The Last Goodbye (2023)",
+                image: "/images/tours_odesza_thelastgoodbye.png"
+            },
+            {
+                name: "In Return (2015)",
+                image: "/images/tours_odesza_inreturn.jpeg"
+            }
+        ]
+        return tours;
+    }
+    render() {
+        return html`
+            <article>
+                <nav aria-label="breadcrumb">
+                <a href="">Home</a> &gt;
+                ODESZA
+                </nav>  
+                <header>
+                    <div class="header-hero">
+                        <a href="index.html">
+                            <h3>SOUNDWAVE</h3>
+                            <h3>COLLECTIVE</h3>
+                        </a>
+                    </div>
+                    <drop-down>
+                        <svg class="account_icon">
+                            <use href="/icons/symbols.svg#icon-profile" />
+                        </svg>
+                        <user-panel 
+                            slot="menu" 
+                            class="user-dropdown">
+                            <span slot="name">${this.profile.name}</span>
+                        </user-panel>
+                    </drop-down>
+                </header>
+                <div>
+                    <h1>
+                        ODESZA
+                    </h1>
+                    <h2>Tours</h2>
+                    <tour-list .tours=${this.getTourList()}></tour-list>
+                </div>
+            </article>`;
+    }
+}

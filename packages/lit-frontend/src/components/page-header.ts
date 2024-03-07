@@ -1,4 +1,11 @@
-/* * {
+import { html, css, LitElement } from "lit";
+import { customElement, property } from "lit/decorators.js";
+
+import './drop-down';
+import './user-panel';
+import './toggle-switch'
+
+const pageCSS = css`/* * {
     box-sizing: border-box;
 } */
 header {
@@ -219,3 +226,42 @@ a:active{
 
 /* headers */
 
+
+`;
+
+customElement("page-header")
+class PageHeader extends LitElement {
+    @property()
+    name: string = '';
+
+    static styles = pageCSS;
+
+    render() {
+        console.log("Hello");
+        return html`
+        <div style="height: 300px;">
+            <nav aria-label="breadcrumb">
+                <slot name="breadcrumb"></slot>
+            </nav>  
+            <header>
+                <div class="header-hero">
+                    <a href="index.html">
+                        <h3>SOUNDWAVE</h3>
+                        <h3>COLLECTIVE</h3>
+                    </a>
+                </div>
+                <drop-down>
+                    <svg class="account_icon">
+                        <use href="/icons/symbols.svg#icon-profile" />
+                    </svg>
+                    <user-panel 
+                        slot="menu" 
+                        class="user-dropdown">
+                        <span slot="name">${this.name}</span>
+                    </user-panel>
+                </drop-down>
+            </header>
+        </div>
+        `;
+    }
+}

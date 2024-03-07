@@ -1,33 +1,30 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
-@customElement("artist-card")
-class ArtistCard extends LitElement {
+@customElement("tour-card")
+class TourCard extends LitElement {
     @property({ type: String})
     name: string = "";
     
     @property({ type: String})
-    artistPicPath: string = "";
-    
-    @property({ type: Array})
-    genres: string[] = [];
+    tourPicPath: string = "";
 
     
     render() {
         return html`
         <div class="card">
-            <span class="artistImage">
-                <slot name="artistImage">
+            <span class="tourImage">
+                <slot name="tourImage">
             </span>
             <h3>
-                <slot name="artistName">Artist Name</slot>
+                <slot name="tourName">Tour Name</slot>
             </h3>
-            </card>
+            <h4>
+                <slot name="artistName">Artist Name</slot>
+            </h4>
+        </card>
     `;
 }
-            // <h6>
-            //     <slot name="genres">${this.genres.map((genre) => html`<dd>${genre}</dd>`)}></slot>
-            // </h6>
     
 static styles = css`
     :host {

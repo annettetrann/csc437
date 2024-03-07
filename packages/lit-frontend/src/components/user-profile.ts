@@ -264,6 +264,8 @@ export class UserProfileEditElement extends UserProfileElement {
       //   "genres":["edm","alternative"],
       // }
 
+      //if the profile doesnt exist, make it, put in password
+
       fetch(`http://127.0.0.1:3000/api/profiles/${json.userid}/`, {
         method: "PUT",
         body: JSON.stringify(json),

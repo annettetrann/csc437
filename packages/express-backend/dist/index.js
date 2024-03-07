@@ -50,5 +50,6 @@ app.listen(port, () => {
 app.put("/api/profiles/:userid", (req, res) => {
   const { userid } = req.params;
   const newProfile = req.body;
+  console.log(newProfile, userid);
   import_profiles.default.update(userid, newProfile).then((profile) => res.json(profile)).catch((err) => res.status(404).end());
 });
