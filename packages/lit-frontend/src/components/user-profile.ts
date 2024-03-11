@@ -223,21 +223,8 @@ export class UserProfileEditElement extends UserProfileElement {
         fr.readAsDataURL(selectedFile);
       }
     );
-
-    // reader.then((result: string) => {
-    //   this.profile = {
-    //     ...(this.profile as Profile),
-    //     avatar: result
-    //   };
-    // });
     reader
-      .then
-      //     (result: string) => {
-      //       this.profile = {
-      //   ...(this.profile as Profile),
-      //   avatar: result
-      // };
-      ();
+      .then();
   }
 
   _handleSubmit(event: Event) {
@@ -257,116 +244,14 @@ export class UserProfileEditElement extends UserProfileElement {
       console.log("Submitting Form", json);
       localStorage.setItem("profile", JSON.stringify(json));
 
-      // const data = {
-      //   "userid":"annette",
-      //   "name":"Annette Tran",
-      //   "city":"Oakland, CA",
-      //   "genres":["edm","alternative"],
-      // }
-
-      //if the profile doesnt exist, make it, put in password
-
       fetch(`http://127.0.0.1:3000/api/profiles/${json.userid}/`, {
         method: "PUT",
-        body: JSON.stringify(json),
         headers: {
-          "Content-Type": "application/json"
-        }
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(json),
       }).then(async (response) => {
-        console.log(await response.json())
-      });;
-
-
-// app.put("/api/profiles/:userid", (req: Request, res: Response) => {
-//   const { userid } = req.params;
-//   const newProfile = req.body;
-
-//   profiles
-//     .update(userid, newProfile)
-//     .then((profile: Profile) => res.json(profile))
-//     .catch((err) => res.status(404).end());
-// });
-
-
-
-
-      // const dispatch = App.createDispatch();
-      // dispatch.addMessage('ProfileSaved', (message: any) => {
-      //   console.log("ProfileSaved", message);
-      // });
-      // const msg: App.ProfileSaved = {
-      //   type: "ProfileSaved",
-      //   userid: this.profile?.userid,
-      //   profile: json as Profile
-      // };
-      // const ev = new CustomEvent("mvu:message", {
-      //   bubbles: true,
-      //   composed: true,
-      //   detail: msg
-      // });
-      // dispatch.addMessage(ev);
+        console.log(await response.json())});
     }
   }
-
-
-//   _handleSubmit(event: Event) {
-//     event.preventDefault(); // prevent browser from submitting form data itself
-
-//     if (this.profile) {
-//       // const avatar = this.profile?.avatar;
-//       const target = event.target as HTMLFormElement;
-//       const formdata = new FormData(target);
-//       let entries = Array.from(formdata.entries())
-//         .map(([k, v]) => (v === "" ? [k] : [k, v]))
-//         .map(([k, v]) =>
-//           k === "airports"
-//             ? [k, (v as string).split(",").map((s) => s.trim())]
-//             : [k, v]
-//         );
-
-//       // if (avatar) entries.push(["avatar", avatar]);
-
-//       const json = Object.fromEntries(entries);
-
-//       console.log("Submitting Form", json);
-
-//       const msg: App.ProfileSaved = {
-//         type: "ProfileSaved",
-//         userid: this.profile?.userid,
-//         profile: json as Profile
-//       };
-//       const ev = new CustomEvent("mvu:message", {
-//         bubbles: true,
-//         composed: true,
-//         detail: msg
-//       });
-//       this.dispatchEvent(ev);
-//     }
-//   }
-// }
-
-  // _putData(json: Profile) {
-  //   fetch(serverPath(this.path), {
-  //     method: "PUT",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify(json)
-  //   })
-  //     .then((response) => { //if response comes back, then populate json
-  //       if (response.status === 200) {
-  //         return response.json();
-  //       }
-  //       return null;
-  //     })
-  //     .then((json: unknown) => { //if the json exists 
-  //       if (json) {
-  //         console.log("PUT request successful:", json);
-  //         this.profile = json as Profile;
-  //       }
-  //     })
-  //     .catch((err) =>
-  //       console.log("Failed to POST form data", err)
-  //     );
-  // }
 }

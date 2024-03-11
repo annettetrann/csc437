@@ -8,24 +8,17 @@ class SongCard extends LitElement {
     
     
     @property({ type: String})
-    spotifyUrl: string = "";
+    spotifyurl: string = "";
 
     
     render() {
         return html`
-        <div class="tourinfo">
+        <div class="songcard">
             <h2>
-                <slot name="songName">Song</slot>
+                <slot name="songname">Song</slot>
             </h2>
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7tRXTDi87CiAqU5sIBQfIC?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            <a href="/setlist/">
-                    <button class="tour-city">
-                        <slot name="tourLocation">
-                            City, State
-                        </slot>
-                    </button>
-            </a>
-        </card>
+            <iframe style="border-radius:12px" src=${this.spotifyurl} width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
     `;
 }
     
@@ -45,7 +38,7 @@ static styles = css`
     label {
         cursor: pointer;
     }
-    
+
     .setlist {
         display: grid;
         align-items: baseline;
@@ -64,7 +57,6 @@ static styles = css`
         background-color: var(--color-h3-background);
         color: var(--color-mode-main);
     }
-    
 
     `;
 

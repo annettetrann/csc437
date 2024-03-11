@@ -3,7 +3,8 @@ import * as App from '../app';
 import { html, css } from 'lit';
 import '../components/user-panel';
 import '../components/drop-down';
-import '../components/toggle-switch';
+import '../components/song-card';
+import '../components/set-list';
 
 import { Profile } from "../ts-models";
 
@@ -254,41 +255,42 @@ class SetListView extends App.View {
         return this.getFromModel<Profile>('profile');
     }
 
-    getSetlist() {
-        const setlist = [
+    getSetList() {
+        const songs = [
             {
                 song: "This Version of You",
-                spotifyUrl: "https://open.spotify.com/embed/track/2h4IoIeRasKE7moH6zhHUO?utm_source=generator"
+                spotifyurl: "https://open.spotify.com/embed/track/2h4IoIeRasKE7moH6zhHUO?utm_source=generator"
             },
             {
                 song: "Behind the Sun",
-                spotifyUrl: "https://open.spotify.com/embed/track/7tRXTDi87CiAqU5sIBQfIC?utm_source=generator"
+                spotifyurl: "https://open.spotify.com/embed/track/7tRXTDi87CiAqU5sIBQfIC?utm_source=generator"
             },
             {
                 song: "All We Need",
-                spotifyUrl: "https://open.spotify.com/embed/track/5jnp8E61wcoF6qIEtDHQnJ?utm_source=generator"
+                spotifyurl: "https://open.spotify.com/embed/track/5jnp8E61wcoF6qIEtDHQnJ?utm_source=generator"
             },
             {
                 song: "Love Letter/Something About You",
-                spotifyUrl: "https://open.spotify.com/embed/track/5p8QLRVnBk20xuvwiDZtTr?utm_source=generator"
+                spotifyurl: "https://open.spotify.com/embed/track/5p8QLRVnBk20xuvwiDZtTr?utm_source=generator"
             },
             {
                 song: "Say My Name",
-                spotifyUrl: "https://open.spotify.com/embed/track/1LeItUMezKA1HdCHxYICed?utm_source=generator"
+                spotifyurl: "https://open.spotify.com/embed/track/1LeItUMezKA1HdCHxYICed?utm_source=generator"
             },
             {
                 song: "Late Night",
-                spotifyUrl: "https://open.spotify.com/embed/track/5Nu5Uyoauauy9LFePYL1Z3?utm_source=generator"
+                spotifyurl: "https://open.spotify.com/embed/track/5Nu5Uyoauauy9LFePYL1Z3?utm_source=generator"
             },
             {
                 song: "In the Rain",
-                spotifyUrl: "https://open.spotify.com/embed/track/0fR8y0bMqFn0mDdZoksk7N?utm_source=generator"
+                spotifyurl: "https://open.spotify.com/embed/track/0fR8y0bMqFn0mDdZoksk7N?utm_source=generator"
             },
             {
                 song: "Heavier",
-                spotifyUrl: "https://open.spotify.com/embed/track/4JBRlhgxP6tkb31KCfM88R?utm_source=generator"
+                spotifyurl: "https://open.spotify.com/embed/track/4JBRlhgxP6tkb31KCfM88R?utm_source=generator"
             }
         ]
+        return songs;
     }
 
     render() {
@@ -325,53 +327,7 @@ class SetListView extends App.View {
         </div>
         <img src="/images/tour_odesza_tlg.jpeg" />
         <section class="setlist">
-            <ol type="1">
-
-                <li>"This Version of You"</li>
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2h4IoIeRasKE7moH6zhHUO?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                
-                <li>"Behind the Sun"</li>
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7tRXTDi87CiAqU5sIBQfIC?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-
-                <li>"All We Need"</li>
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5jnp8E61wcoF6qIEtDHQnJ?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                
-                <li>"Love Letter/Something About You"</li>
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5p8QLRVnBk20xuvwiDZtTr?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                
-                <li>"Say My Name"</li>
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1LeItUMezKA1HdCHxYICed?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                
-                <li>"Late Night"</li>
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5Nu5Uyoauauy9LFePYL1Z3?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                
-                <li>"In the Rain"</li>
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0fR8y0bMqFn0mDdZoksk7N?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-
-                <li>"Heavier"</li>
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4JBRlhgxP6tkb31KCfM88R?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-
-                <li>"Bloom"</li>
-                <li>"Equal / Boy"</li>
-                <li>"All My Life"</li>
-                <li>"Better Now"</li>
-                <li>"Line of Sight"</li>
-                <li>"Forgive Me"</li>
-                <li>"La ciudad"</li>
-                <li>"Selfish Sou"</li>
-                <li>"TENSE"</li>
-                <li>"KEEP MOVING"</li>
-                <li>"Sun Models"</li>
-                <li>"Hopeful"</li>
-                <li>"Across the Room"</li>
-                <li>"Falls"</li>
-                <li>"Loyal"</li>
-                <li>"Don't Stop"</li>
-                <li>"Higher Ground"</li>
-                <li>"A Moment Apart"</li>
-                <li>"The Last Goodbye"</li>
-
-            </ol>
+            <set-list .songs=${this.getSetList()}></set-list>
         </section>
     </article>`;
 

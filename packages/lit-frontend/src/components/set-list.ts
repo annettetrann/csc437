@@ -1,42 +1,36 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import './tourinfo-card';
+import './song-card';
 
-@customElement("tourinfo-list")
-class TourInfoList extends LitElement {
+@customElement("set-list")
+class SetList extends LitElement {
     @property({ type: Array})
-    tourInfo = [];
+    songs = [];
 
-    sortAlphabetically() {
-        this.tourLocations.sort((a, b) => a.location.localeCompare(b.location));
-        this.requestUpdate();
-  }
+    // sortAlphabetically() {
+    //     this.tourLocations.sort((a, b) => a.location.localeCompare(b.location));
+    //     this.requestUpdate();
+    // }
 
-    renderTourInfo(tourinfo) {
-        return html`<a href="/setlist/">
-                <tourinfo-card class="tourinfo-card">
-                    <span slot="tourDate">${tourinfo.date}</span>
-                    <span slot="tourLocation">${tourinfo.location}</span> 
-                    
-                </tourinfo-card>
-            </a> `
+    renderSong(songs) {
+        console.log(songs.spotifyurl)
+        return html`
+                <song-card class="song-card" spotifyurl=${songs.spotifyurl}>
+                    <span slot="songname">${songs.song}</span>
+                </song-card>`
     }
+    
 
     render() {
-        console.log(this.tourInfo, "####")
+        console.log(this.songs, "####")
         return html`
         <section>
-            <div class="sort">
-                <button @click="${this.sortAlphabetically}">Sort Alp</button>
-            </div>
-            <div class="tourinfo">
-            ${this.tourInfo.map((tour) => this.renderTourInfo(tour))}
-            </div>
+            ${this.songs.map((song) => this.renderSong(song))}
         </section>`
     }
 
     static styles = css`
-    .tours{
+    .host{
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 0 4 rem;
@@ -45,13 +39,13 @@ class TourInfoList extends LitElement {
         justify-content: space-evenly;
         column-gap: 1rem;
     }
-    .tour{
+    .setlist{
         display: block;
         height: 20vh;
         width: auto;
     }
     
-    .tour-card{
+    .song-card{
         border: 3px solid var(--color-mode-light-accent);
         text-align: center;
         color: white;
@@ -88,6 +82,29 @@ class TourInfoList extends LitElement {
 
     img {
         width: 100%;
+    }
+
+    label {
+        cursor: pointer;
+    }
+
+    .setlist {
+        display: grid;
+        align-items: baseline;
+        vertical-align: auto;
+    }
+    
+    .setlist > header {
+        flex-basis: min-content;
+    }
+    
+    .setlist > li {
+        color: var(--color-mode-opp);
+    }
+    
+    .setlist-bg {
+        background-color: var(--color-h3-background);
+        color: var(--color-mode-main);
     }
 
     `

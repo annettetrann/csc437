@@ -319,7 +319,7 @@ class TourView extends App.View {
                 </drop-down>
             </header>
             <img src="/images/tour_odesza_tlg.jpeg"/>
-            <section class="tour dates & locations">
+            <section class="tour">
                 <h2>Dates // Locations</h2>
                 <tourinfo-list .tourInfo=${this.getTourInfo()}></tourinfo-list>
             </section>
