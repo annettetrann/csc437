@@ -6,7 +6,7 @@ import '../components/drop-down';
 import '../components/song-card';
 import '../components/set-list';
 
-import { Profile } from "../ts-models";
+import { Profile, SetList } from "../../../ts-models/src";
 
 const pageCSS = css`
     header {
@@ -249,49 +249,59 @@ class SetListView extends App.View {
       }
     
     static styles = pageCSS;
-    @property()
 
+    @property()
     get profile() {
         return this.getFromModel<Profile>('profile');
     }
 
-    getSetList() {
-        const songs = [
-            {
-                song: "This Version of You",
-                spotifyurl: "https://open.spotify.com/embed/track/2h4IoIeRasKE7moH6zhHUO?utm_source=generator"
-            },
-            {
-                song: "Behind the Sun",
-                spotifyurl: "https://open.spotify.com/embed/track/7tRXTDi87CiAqU5sIBQfIC?utm_source=generator"
-            },
-            {
-                song: "All We Need",
-                spotifyurl: "https://open.spotify.com/embed/track/5jnp8E61wcoF6qIEtDHQnJ?utm_source=generator"
-            },
-            {
-                song: "Love Letter/Something About You",
-                spotifyurl: "https://open.spotify.com/embed/track/5p8QLRVnBk20xuvwiDZtTr?utm_source=generator"
-            },
-            {
-                song: "Say My Name",
-                spotifyurl: "https://open.spotify.com/embed/track/1LeItUMezKA1HdCHxYICed?utm_source=generator"
-            },
-            {
-                song: "Late Night",
-                spotifyurl: "https://open.spotify.com/embed/track/5Nu5Uyoauauy9LFePYL1Z3?utm_source=generator"
-            },
-            {
-                song: "In the Rain",
-                spotifyurl: "https://open.spotify.com/embed/track/0fR8y0bMqFn0mDdZoksk7N?utm_source=generator"
-            },
-            {
-                song: "Heavier",
-                spotifyurl: "https://open.spotify.com/embed/track/4JBRlhgxP6tkb31KCfM88R?utm_source=generator"
-            }
-        ]
-        return songs;
+    @property()
+    get setList() {
+        return this.getFromModel<SetList>('setList');
     }
+
+    connectedCallback(): void {
+        super.connectedCallback();
+        this.dispatchMessage({ type: "SetListRequested" });
+    }
+
+    // getSetList() {
+    //     const songs = [
+    //         {
+    //             song: "This Version of You",
+    //             spotifyurl: "https://open.spotify.com/embed/track/2h4IoIeRasKE7moH6zhHUO?utm_source=generator"
+    //         },
+    //         {
+    //             song: "Behind the Sun",
+    //             spotifyurl: "https://open.spotify.com/embed/track/7tRXTDi87CiAqU5sIBQfIC?utm_source=generator"
+    //         },
+    //         {
+    //             song: "All We Need",
+    //             spotifyurl: "https://open.spotify.com/embed/track/5jnp8E61wcoF6qIEtDHQnJ?utm_source=generator"
+    //         },
+    //         {
+    //             song: "Love Letter/Something About You",
+    //             spotifyurl: "https://open.spotify.com/embed/track/5p8QLRVnBk20xuvwiDZtTr?utm_source=generator"
+    //         },
+    //         {
+    //             song: "Say My Name",
+    //             spotifyurl: "https://open.spotify.com/embed/track/1LeItUMezKA1HdCHxYICed?utm_source=generator"
+    //         },
+    //         {
+    //             song: "Late Night",
+    //             spotifyurl: "https://open.spotify.com/embed/track/5Nu5Uyoauauy9LFePYL1Z3?utm_source=generator"
+    //         },
+    //         {
+    //             song: "In the Rain",
+    //             spotifyurl: "https://open.spotify.com/embed/track/0fR8y0bMqFn0mDdZoksk7N?utm_source=generator"
+    //         },
+    //         {
+    //             song: "Heavier",
+    //             spotifyurl: "https://open.spotify.com/embed/track/4JBRlhgxP6tkb31KCfM88R?utm_source=generator"
+    //         }
+    //     ]
+    //     return songs;
+    // }
 
     render() {
         return html`
@@ -327,7 +337,7 @@ class SetListView extends App.View {
         </div>
         <img src="/images/tour_odesza_tlg.jpeg" />
         <section class="setlist">
-            <set-list .songs=${this.getSetList()}></set-list>
+            <set-list .songs=${this.setList}></set-list>
         </section>
     </article>`;
 

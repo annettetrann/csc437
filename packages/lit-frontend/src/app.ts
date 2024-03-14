@@ -2,12 +2,14 @@ import { consume, createContext, provide } from "@lit/context";
 import { property, state } from "lit/decorators.js";
 import * as MVU from "./mvu";
 import { MsgType } from "./mvu";
-import { Profile, Artist, Tours } from "../../ts-models/src"; // step 1
+import { Profile, Artist, Tours, Tour, SetList } from "../../ts-models/src"; // step 1
 
 export interface Model {
   profile?: Profile;
   artistList: Artist[]; // step 2
   toursList: Tours[];
+  tourInfoList: Tour[];
+  setList: SetList[];
 }
 
 
@@ -16,7 +18,9 @@ export const context = createContext<Model>("BlazingModel");
 export const init: Model = {
     profile: JSON.parse(localStorage.getItem("profile") || "{}"),
     artistList: [], // step 3
-    toursList: []
+    toursList: [],
+    tourInfoList: [],
+    setList: []
 };
 
 export interface ProfileSaved extends MsgType<"ProfileSaved"> {
@@ -32,6 +36,12 @@ export interface ArtistListRequested extends MsgType<"ArtistListRequested"> {
 } // step 4
 
 export interface ToursListRequested extends MsgType<"ArtistListRequested"> {
+}
+
+export interface TourInfoListRequested extends MsgType<"ArtistListRequested"> {
+} 
+
+export interface SetListRequested extends MsgType<"ArtistListRequested"> {
 } 
 
 // step 5 (Go to update.ts)
@@ -39,7 +49,9 @@ export type Message =
    | ProfileRequested
    | ProfileSaved
    | ArtistListRequested
-   | ToursListRequested;
+   | ToursListRequested
+   | TourInfoListRequested
+   | SetListRequested;
 
 export class Main
   extends MVU.Main<Model, Message>

@@ -7,7 +7,7 @@ import '../components/toggle-switch';
 import '../components/tourinfo-card';
 import '../components/tourinfo-list';
 
-import { Profile } from "../ts-models";
+import { Profile, Tour } from "../../../ts-models/src";
 
 
 const pageCSS = css`header {
@@ -256,41 +256,53 @@ class TourView extends App.View {
       }
     
     static styles = pageCSS;
-    @property()
 
+    @property()
     get profile() {
         return this.getFromModel<Profile>('profile');
     }
 
-    getTourInfo() {
-        const tourInfo = [
-            {
-                date: "July 29th",
-                location: "Seattle, WA"
-            },
-            {
-                date: "July 30th",
-                location: "Seattle, WA"
-            },
-            {
-                date: "July 31st",
-                location: "Seattle, WA"
-            },
-            {
-                date: "August 17th",
-                location: "Phoenix, AZ"
-            },
-            {
-                date: "August 19th",
-                location: "Austin, TX"
-            },
-            {
-                date: "September 30th",
-                location: "Santa Barbara, CA"
-            }
-        ]
-        return tourInfo;
+    @property()
+    get tourInfoList() {
+        return this.getFromModel<Tour>('tourInfoList');
+
     }
+
+    connectedCallback(): void {
+        super.connectedCallback();
+        this.dispatchMessage({ 
+            type: "TourInfoListRequested"});
+    }
+
+    // getTourInfo() {
+    //     const tourInfo = [
+    //         {
+    //             date: "July 29th",
+    //             location: "Seattle, WA"
+    //         },
+    //         {
+    //             date: "July 30th",
+    //             location: "Seattle, WA"
+    //         },
+    //         {
+    //             date: "July 31st",
+    //             location: "Seattle, WA"
+    //         },
+    //         {
+    //             date: "August 17th",
+    //             location: "Phoenix, AZ"
+    //         },
+    //         {
+    //             date: "August 19th",
+    //             location: "Austin, TX"
+    //         },
+    //         {
+    //             date: "September 30th",
+    //             location: "Santa Barbara, CA"
+    //         }
+    //     ]
+    //     return tourInfo;
+    // }
 
     render() {
         return html`
@@ -321,7 +333,7 @@ class TourView extends App.View {
             <img src="/images/tour_odesza_tlg.jpeg"/>
             <section class="tour">
                 <h2>Dates // Locations</h2>
-                <tourinfo-list .tourInfo=${this.getTourInfo()}></tourinfo-list>
+                <tourinfo-list .tourInfo=${this.tourInfoList}></tourinfo-list>
             </section>
         </article>`;
     }
