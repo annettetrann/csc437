@@ -8,7 +8,8 @@ import '../components/toggle-switch';
 import '../components/page-header';
 
 
-import { Profile } from "../ts-models";
+// import { Profile } from "../ts-models";
+import { Profile, Artist } from '../../../ts-models/src';
 
 const pageCSS = css`/* * {
     box-sizing: border-box;
@@ -247,28 +248,17 @@ class IndexView extends App.View {
     return this.getFromModel<Profile>('profile');
   }
 
-  getArtistList() {
-    const artists = [
-        {
-            name: "ODESZA",
-            image: "/images/artist_odesza.jpeg"
-        },
-        {
-            name: "Fred Again...",
-            image: "/images/artist_fredagain.jpeg"
-        },
-        {
-            name: "David Guetta",
-            image: "/images/artists_davidguetta.jpeg"
-        },
-        {
-            name: "Calvin Harris",
-            image: "/images/artists_calvinharris.jpeg"
-        }
-    ]
-    return artists;
-    // document.querySelector('artist-list').artists = artists;
+  @property()
+  get artistList() {
+    return this.getFromModel<Artist[]>('artistList'); // step 8
   }
+
+  connectedCallback(): void { //step 9
+    super.connectedCallback();
+    this.dispatchMessage({ type: "ArtistListRequested" }); // step 9
+  
+  }
+
   render() {
     return html`
         <nav aria-label="breadcrumb">
@@ -291,7 +281,7 @@ class IndexView extends App.View {
             <span>SOUNDWAVE COLLECTIVE</span>
         </div>
         <h2>Artists</h2>
-        <artist-list .artists=${this.getArtistList()}></artist-list>
+        <artist-list .artists=${this.artistList}></artist-list>
         </article>`;
   }
 }

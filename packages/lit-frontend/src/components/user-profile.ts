@@ -7,11 +7,7 @@ import { serverPath } from "./rest";
 @customElement("user-profile")
 export class UserProfileElement extends LitElement {
   @property({ attribute: false })
-  using?: Profile;
-
-  get profile() {
-    return this.using || ({} as Profile);
-  }
+  profile?: Profile = {};
   
   render() {
     const {
@@ -132,23 +128,10 @@ export class UserProfileElement extends LitElement {
 @customElement("user-profile-edit")
 export class UserProfileEditElement extends UserProfileElement {
   @property()
-  userid: string = JSON.parse(localStorage.getItem("profile") ??  "{}").userid;
-
-
-  @property()
   profile?: Profile = {}; //JSON.parse(localStorage.getItem("profile") ??  "{}");
 
-  connectedCallback(): void {
-    super.connectedCallback();
-    this.getUserProfile();
-  }
-
-  async getUserProfile() {
-    // const userid = 'annette';
-    fetch(`http://127.0.0.1:3000/api/profile/${this.userid}/`).then(async (response) => {
-      this.profile = await response.json();
-    });
-  }
+  @property()
+  submitProfileChange?: (profile: Profile) => void;
 
   render() {
     const {
@@ -239,19 +222,22 @@ export class UserProfileEditElement extends UserProfileElement {
       let entries = Array.from(formdata.entries())
         .map(([k, v]) => (v === "" ? [k] : [k, v]));
 
-      const json = Object.fromEntries(entries);
+      const newProfileData = Object.fromEntries(entries);
+      if (this.submitProfileChange) {
+        this.submitProfileChange(newProfileData);
+      }
 
-      console.log("Submitting Form", json);
-      localStorage.setItem("profile", JSON.stringify(json));
+      // console.log("Submitting Form", json);
+      // localStorage.setItem("profile", JSON.stringify(json));
 
-      fetch(`http://127.0.0.1:3000/api/profiles/${json.userid}/`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(json),
-      }).then(async (response) => {
-        console.log(await response.json())});
+      // fetch(`http://127.0.0.1:3000/api/profiles/${json.userid}/`, {
+      //   method: "PUT",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(json),
+      // }).then(async (response) => {
+      //   console.log(await response.json())});
     }
   }
 }

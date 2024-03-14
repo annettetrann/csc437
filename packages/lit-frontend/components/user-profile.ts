@@ -9,6 +9,9 @@ export class UserProfileElement extends LitElement {
   @property({ attribute: false })
   using?: Profile;
 
+  @property({ attribute: false })
+  func?: (json: Profile) => void;
+
   get profile() {
     return this.using || ({} as Profile);
   }
@@ -264,15 +267,19 @@ export class UserProfileEditElement extends UserProfileElement {
       //   "genres":["edm","alternative"],
       // }
 
-      fetch(`http://127.0.0.1:3000/api/profiles/${json.userid}/`, {
-        method: "PUT",
-        body: JSON.stringify(json),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }).then(async (response) => {
-        console.log(await response.json())
-      });;
+
+      if (this.func) {
+        this.func(json as Profile);
+      }
+      // fetch(`http://127.0.0.1:3000/api/profiles/${json.userid}/`, {
+      //   method: "PUT",
+      //   body: JSON.stringify(json),
+      //   headers: {
+      //     "Content-Type": "application/json"
+      //   }
+      // }).then(async (response) => {
+      //   console.log(await response.json())
+      // });
 
 
 // app.put("/api/profiles/:userid", (req: Request, res: Response) => {

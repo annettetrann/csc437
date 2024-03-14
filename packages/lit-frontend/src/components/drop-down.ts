@@ -57,7 +57,7 @@ class DropDownElement extends LitElement {
       display: none;
       position: absolute;
       top: 100%;
-      left: 0;
+      left: -50px;
       border: 1px solid;
       background: var(--color-mode-lw);
     }

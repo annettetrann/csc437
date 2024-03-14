@@ -24,7 +24,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var import_express = __toESM(require("express"));
 var import_cors = __toESM(require("cors"));
 var import_mongoConnect = require("./mongoConnect");
-var import_profiles = __toESM(require("./services/profiles"));
+var import_profiles = __toESM(require("./profiles"));
 console.log("Connecting to MongoDB");
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
@@ -36,7 +36,7 @@ console.log("Connecting to MongoDB");
 app.get("/hello", (req, res) => {
   res.send("Hello, World");
 });
-app.get("/api/profiles/:userid", (req, res) => {
+app.get("/api/profile/:userid", (req, res) => {
   const { userid } = req.params;
   import_profiles.default.get(userid).then((profile) => res.json(profile)).catch((err) => res.status(404).end());
 });
@@ -52,6 +52,4 @@ app.put("/api/profiles/:userid", (req, res) => {
   const newProfile = req.body;
   console.log(newProfile, userid);
   import_profiles.default.update(userid, newProfile).then((profile) => res.json(profile)).catch((err) => res.status(404).end());
-});
-app.post("/api/login", (req, res) => {
 });

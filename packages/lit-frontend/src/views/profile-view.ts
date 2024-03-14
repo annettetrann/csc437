@@ -236,10 +236,31 @@ class ProfileView extends App.View {
       }
     
     static styles = pageCSS;
-    @property()
 
+    connectedCallback(): void {
+        super.connectedCallback();
+        // this.dispatchMessage({ 
+        //     type: "ProfileRequested",
+        //     userid: this.profile.userid
+        //  });
+        // this.getUserProfile();
+    }
+
+    @property({ type: Object })
     get profile() {
         return this.getFromModel<Profile>('profile');
+    }
+
+    onSubmit(form: any) {
+        console.log('Form submitted', form);
+        this.dispatchMessage({ 
+            type: "ProfileSaved",
+            userid: this.profile.userid,
+            profile: {
+                ...form,
+                avatar: ""
+            }
+         });
     }
 
     render() {
@@ -272,8 +293,8 @@ class ProfileView extends App.View {
                 <h2>Profile</h2>
                 <main class="page">
                     
-                    <user-profile path="/profiles/annette"></user-profile>
-                    <user-profile-edit path="/profiles/annette"></user-profile-edit>
+                    <user-profile .profile=${this.profile}></user-profile>
+                    <user-profile-edit .profile=${this.profile} .submitProfileChange=${(form) => this.onSubmit(form)}></user-profile-edit>
                 </main>
             </body>
         </article>

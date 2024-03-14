@@ -14,9 +14,9 @@ class SongCard extends LitElement {
     render() {
         return html`
         <div class="songcard">
-            <h2>
+            <h4>
                 <slot name="songname">Song</slot>
-            </h2>
+            </h4>
             <iframe style="border-radius:12px" src=${this.spotifyurl} width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
     `;
@@ -56,6 +56,10 @@ static styles = css`
     .setlist-bg {
         background-color: var(--color-h3-background);
         color: var(--color-mode-main);
+    }
+
+    .songcard > h4 {
+        margin: 0.2rem;
     }
 
     `;

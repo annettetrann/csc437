@@ -1,14 +1,32 @@
 // src/models/mongo/profile.ts
 import { Schema, Model, Document, model } from "mongoose";
-import { Profile } from "../Profile";
+import { Profile } from "../profile";
 
 const profileSchema = new Schema<Profile>(
   {
-    userid: { type: String, required: true, trim: true },
-    name: { type: String, required: true, trim: true },
-    nickname: { type: String, trim: true },
-    city: { type: String, trim: true },
+    userid: { 
+      type: String, 
+      required: true, 
+      trim: true 
+    },
+    name: { 
+      type: String, 
+      required: true, 
+      trim: true 
+    },
+    nickname: { 
+      type: String, 
+      trim: true 
+    },
+    city: { 
+      type: String, 
+      trim: true 
+    },
     genres: [String],
+    avatar: { 
+      type: String, 
+      trim: true 
+    },
   },
   { collection: "user_profiles" }
 );

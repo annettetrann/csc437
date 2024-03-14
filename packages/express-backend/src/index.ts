@@ -3,9 +3,10 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import { connect } from "./mongoConnect";
 
-import profiles from "./profiles";
+import profiles from "./services/profiles";
 import { Profile } from "./models/profile";
 
+import { loginUser, registerUser } from "./auth";
 
 console.log("Connecting to MongoDB"); 
 
@@ -23,7 +24,7 @@ app.get("/hello", (req: Request, res: Response) => {
     res.send("Hello, World");
 });
 // in src/index.ts, with the other app.get()
-app.get("/api/profile/:userid", (req: Request, res: Response) => {
+app.get("/api/profiles/:userid", (req: Request, res: Response) => {
   const { userid } = req.params;
 
   profiles
@@ -55,4 +56,7 @@ app.put("/api/profiles/:userid", (req: Request, res: Response) => {
     .update(userid, newProfile)
     .then((profile: Profile) => res.json(profile))
     .catch((err) => res.status(404).end());
+});
+
+app.post("/api/login", (req: Request, res: Response) => {
 });

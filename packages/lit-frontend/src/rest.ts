@@ -1,10 +1,10 @@
-const SERVER_ROOT = 'http://127.0.0.1:3000/'; window.location.origin;
+const SERVER_ROOT = 'http://127.0.0.1:3000'; //window.location.origin;
 const API_PATH = "/api";
 const TOKEN_KEY = "JWT_AUTH_TOKEN";
 
 export class APIUser {
   authenticated = false;
-  username = "fellow_traveler";
+  username = "";
   signOut = () => {};
 
   static _theUser = new APIUser();
@@ -86,9 +86,9 @@ export class JSONRequest {
   }
 
   get(endpoint: string): Promise<Response> {
+    console.log("GET", this._url(endpoint));
     return fetch(this._url(endpoint), {
-      headers: this._headers(),
-      body: this.json && JSON.stringify(this.json)
+      headers: this._headers()
     });
   }
 

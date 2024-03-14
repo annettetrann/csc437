@@ -2,16 +2,21 @@ import { consume, createContext, provide } from "@lit/context";
 import { property, state } from "lit/decorators.js";
 import * as MVU from "./mvu";
 import { MsgType } from "./mvu";
-import { Profile } from "../ts-models";
+import { Profile, Artist, Tours } from "../../ts-models/src"; // step 1
 
 export interface Model {
   profile?: Profile;
+  artistList: Artist[]; // step 2
+  toursList: Tours[];
 }
+
 
 export const context = createContext<Model>("BlazingModel");
 
 export const init: Model = {
-    profile: JSON.parse(localStorage.getItem("profile") || "{}")
+    profile: JSON.parse(localStorage.getItem("profile") || "{}"),
+    artistList: [], // step 3
+    toursList: []
 };
 
 export interface ProfileSaved extends MsgType<"ProfileSaved"> {
@@ -19,8 +24,22 @@ export interface ProfileSaved extends MsgType<"ProfileSaved"> {
   profile: {};
 }
 
+export interface ProfileRequested extends MsgType<"ProfileRequested"> {
+  userid: string;
+}
+
+export interface ArtistListRequested extends MsgType<"ArtistListRequested"> {
+} // step 4
+
+export interface ToursListRequested extends MsgType<"ArtistListRequested"> {
+} 
+
+// step 5 (Go to update.ts)
 export type Message =
-   | ProfileSaved;
+   | ProfileRequested
+   | ProfileSaved
+   | ArtistListRequested
+   | ToursListRequested;
 
 export class Main
   extends MVU.Main<Model, Message>

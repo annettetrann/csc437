@@ -1,8 +1,9 @@
-// src/profiles.ts
+
 import { Document } from "mongoose";
-import { Profile } from "./models/Profile";
-import ProfileModel from "./models/mongo/profile";
+import { Profile } from "../models/profile";
+import ProfileModel from "../models/mongo/profile";
 import * as App from "../app";
+
 
 function index(): Promise<Profile[]> {
   return ProfileModel.find();

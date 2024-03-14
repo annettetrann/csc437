@@ -42,11 +42,7 @@ const profileSchema = new import_mongoose.Schema(
       type: String,
       trim: true
     },
-    genres: [String],
-    avatar: {
-      type: String,
-      trim: true
-    }
+    genres: [String]
   },
   { collection: "user_profiles" }
 );

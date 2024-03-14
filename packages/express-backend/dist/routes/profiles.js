@@ -5,6 +5,10 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
     for (let key of __getOwnPropNames(from))
@@ -21,37 +25,31 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+var profiles_exports = {};
+__export(profiles_exports, {
+  default: () => profiles_default
+});
+module.exports = __toCommonJS(profiles_exports);
 var import_express = __toESM(require("express"));
-var import_cors = __toESM(require("cors"));
-var import_mongoConnect = require("./mongoConnect");
-var import_profiles = __toESM(require("./services/profiles"));
-console.log("Connecting to MongoDB");
-const app = (0, import_express.default)();
-const port = process.env.PORT || 3e3;
-console.log("Connecting to MongoDB");
-app.use((0, import_cors.default)());
-app.use(import_express.default.json());
-console.log("Connecting to MongoDB");
-(0, import_mongoConnect.connect)("soundwavecollective");
-app.get("/hello", (req, res) => {
-  res.send("Hello, World");
-});
-app.get("/api/profiles/:userid", (req, res) => {
-  const { userid } = req.params;
-  import_profiles.default.get(userid).then((profile) => res.json(profile)).catch((err) => res.status(404).end());
-});
-app.post("/api/profiles", (req, res) => {
+var import_profiles = __toESM(require("../services/profiles"));
+const router = import_express.default.Router();
+router.post("/", (req, res) => {
   const newProfile = req.body;
   import_profiles.default.create(newProfile).then((profile) => res.status(201).send(profile)).catch((err) => res.status(500).send(err));
 });
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+router.get("/:userid", (req, res) => {
+  const { userid } = req.params;
+  import_profiles.default.get(userid).then((profile) => {
+    if (!profile)
+      throw "Not found";
+    else
+      res.json(profile);
+  }).catch((err) => res.status(404).end());
 });
-app.put("/api/profiles/:userid", (req, res) => {
+router.put("/:userid", (req, res) => {
   const { userid } = req.params;
   const newProfile = req.body;
-  console.log(newProfile, userid);
   import_profiles.default.update(userid, newProfile).then((profile) => res.json(profile)).catch((err) => res.status(404).end());
 });
-app.post("/api/login", (req, res) => {
-});
+var profiles_default = router;

@@ -16,11 +16,11 @@ var __copyProps = (to, from, except, desc) => {
   return to;
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var profile_exports = {};
-__export(profile_exports, {
-  default: () => profile_default
+var mongo_exports = {};
+__export(mongo_exports, {
+  default: () => mongo_default
 });
-module.exports = __toCommonJS(profile_exports);
+module.exports = __toCommonJS(mongo_exports);
 var import_mongoose = require("mongoose");
 const profileSchema = new import_mongoose.Schema(
   {
@@ -51,4 +51,4 @@ const profileSchema = new import_mongoose.Schema(
   { collection: "user_profiles" }
 );
 const ProfileModel = (0, import_mongoose.model)("Profile", profileSchema);
-var profile_default = ProfileModel;
+var mongo_default = ProfileModel;

@@ -7,7 +7,7 @@ import '../components/toggle-switch';
 import '../components/tour-card';
 import '../components/tour-list';
 
-import { Profile } from "../ts-models";
+import { Profile, Tours } from '../../../ts-models/src';
 
 const pageCSS = css`header {
     /* background-color: var(--color-header-background); */
@@ -272,25 +272,34 @@ class ToursView extends App.View {
       }
     
     static styles = pageCSS;
-    @property()
 
+    @property()
     get profile() {
         return this.getFromModel<Profile>('profile');
     }
 
-    getTourList() {
-        const tours = [
-            {
-                name: "The Last Goodbye (2023)",
-                image: "/images/tours_odesza_thelastgoodbye.png"
-            },
-            {
-                name: "In Return (2015)",
-                image: "/images/tours_odesza_inreturn.jpeg"
-            }
-        ]
-        return tours;
+    @property()
+    get toursList() {
+        return this.getFromModel<Tours>('toursList');
     }
+
+    connectedCallback(): void {
+        super.connectedCallback();
+        this.dispatchMessage({ type: "ToursListRequested"});
+    }
+    // getTourList() {
+    //     const tours = [
+    //         {
+    //             name: "The Last Goodbye (2023)",
+    //             image: "/images/tours_odesza_thelastgoodbye.png"
+    //         },
+    //         {
+    //             name: "In Return (2015)",
+    //             image: "/images/tours_odesza_inreturn.jpeg"
+    //         }
+    //     ]
+    //     return tours;
+    // }
     render() {
         return html`
             <article>
@@ -321,7 +330,7 @@ class ToursView extends App.View {
                         ODESZA
                     </h1>
                     <h2>Tours</h2>
-                    <tour-list .tours=${this.getTourList()}></tour-list>
+                    <tour-list .tours=${this.toursList}></tour-list>
                 </div>
             </article>`;
     }

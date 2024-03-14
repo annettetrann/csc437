@@ -31,24 +31,22 @@ __export(profiles_exports, {
   default: () => profiles_default
 });
 module.exports = __toCommonJS(profiles_exports);
-var import_profile = __toESM(require("./models/mongo/profile"));
-var import_express = __toESM(require("express"));
-const router = import_express.default.Router();
+var import_profile2 = __toESM(require("../models/mongo/profile"));
 function index() {
-  return import_profile.default.find();
+  return import_profile2.default.find();
 }
 function get(userid) {
-  return import_profile.default.find({ userid }).then((list) => list[0]).catch((err) => {
+  return import_profile2.default.find({ userid }).then((list) => list[0]).catch((err) => {
     throw `${userid} Not Found`;
   });
 }
 function create(profile) {
-  const p = new import_profile.default(profile);
+  const p = new import_profile2.default(profile);
   return p.save();
 }
 function update(userid, profile) {
   return new Promise((resolve, reject) => {
-    import_profile.default.findOneAndUpdate({ userid }, profile, {
+    import_profile2.default.findOneAndUpdate({ userid }, profile, {
       new: true
     }).then((profile2) => {
       if (profile2)

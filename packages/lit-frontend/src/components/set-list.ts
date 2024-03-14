@@ -39,6 +39,7 @@ class SetList extends LitElement {
         justify-content: space-evenly;
         column-gap: 1rem;
     }
+    
     .setlist{
         display: block;
         height: 20vh;
