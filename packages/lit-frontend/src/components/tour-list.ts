@@ -1,23 +1,24 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import './tour-card';
+import { Tours } from "ts-models";
 
 @customElement("tour-list")
 class TourList extends LitElement {
     @property({ type: Array})
-    tours = [];
+    tours: Tours[] = [];
 
     sortAlphabetically() {
         this.tours.sort((a, b) => a.name.localeCompare(b.name));
         this.requestUpdate();
     }
 
-    renderTour(tour) {
+    renderTour(tour: Tours) {
         return html`<a href="/tour/">
                 <tour-card class="tour-card">
                     <img slot="tourImage" src="${tour.image}"/>
                     <span slot="tourName">${tour.name}</span>
-                    <span slot="artistName">${tour.artistName}</span> 
+                    <span slot="artistName">${tour.artist}</span> 
                     
                 </tour-card>
             </a> `

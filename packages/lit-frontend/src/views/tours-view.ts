@@ -265,8 +265,16 @@ a:active{
 `;
 
 
+
 @customElement('tours-page')
 class ToursView extends App.View {
+    @property({attribute: 'artistname', reflect: true})
+    get artistname() {
+        //@ts-ignore
+        return this.location?.params.artistname || '';
+
+    }
+    
     constructor() {
         super();
       }
@@ -285,7 +293,10 @@ class ToursView extends App.View {
 
     connectedCallback(): void {
         super.connectedCallback();
-        this.dispatchMessage({ type: "ToursListRequested"});
+        this.dispatchMessage({ 
+            type: "ToursListRequested",
+            name:  this.artistname
+        });
     }
     // getTourList() {
     //     const tours = [
@@ -305,7 +316,7 @@ class ToursView extends App.View {
             <article>
                 <nav aria-label="breadcrumb">
                 <a href="">Home</a> &gt;
-                ODESZA
+                ${this.artistname}
                 </nav>  
                 <header>
                     <div class="header-hero">
@@ -321,13 +332,13 @@ class ToursView extends App.View {
                         <user-panel 
                             slot="menu" 
                             class="user-dropdown">
-                            <span slot="name">${this.profile.name}</span>
+                            <span slot="name">${this.profile?.name}</span>
                         </user-panel>
                     </drop-down>
                 </header>
                 <div>
                     <h1>
-                        ODESZA
+                    ${this.artistname}
                     </h1>
                     <h2>Tours</h2>
                     <tour-list .tours=${this.toursList}></tour-list>

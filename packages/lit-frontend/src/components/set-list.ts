@@ -5,19 +5,18 @@ import './song-card';
 @customElement("set-list")
 class SetList extends LitElement {
     @property({ type: Array})
-    songs = [];
+    songs: any[] = [];
 
     // sortAlphabetically() {
     //     this.tourLocations.sort((a, b) => a.location.localeCompare(b.location));
     //     this.requestUpdate();
     // }
 
-    renderSong(songs) {
-        console.log(songs.spotifyurl)
+    renderSong(songs: any) {
         return html`
-                <song-card class="song-card" spotifyurl=${songs.spotifyurl}>
-                    <span slot="songname">${songs.song}</span>
-                </song-card>`
+            <song-card class="song-card" spotifyurl=${songs.spotifyurl}>
+                <span slot="songname">${songs.song}</span>
+            </song-card>`
     }
     
 

@@ -25,6 +25,8 @@ var import_express = __toESM(require("express"));
 var import_cors = __toESM(require("cors"));
 var import_mongoConnect = require("./mongoConnect");
 var import_profiles = __toESM(require("./services/profiles"));
+var import_artists = __toESM(require("./services/artists"));
+var import_tours = __toESM(require("./services/tours"));
 console.log("Connecting to MongoDB");
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
@@ -54,4 +56,11 @@ app.put("/api/profiles/:userid", (req, res) => {
   import_profiles.default.update(userid, newProfile).then((profile) => res.json(profile)).catch((err) => res.status(404).end());
 });
 app.post("/api/login", (req, res) => {
+});
+app.get("/api/artists", (req, res) => {
+  import_artists.default.index().then((list) => res.json(list));
+});
+app.get("/api/tours/:artistname", (req, res) => {
+  const { artistname } = req.params;
+  import_tours.default.index(artistname).then((list) => res.json(list));
 });

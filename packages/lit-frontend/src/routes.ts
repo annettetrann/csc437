@@ -11,7 +11,7 @@ export default [
         component: "index-page"
     },
     {
-        path: "/tours/",
+        path: "/tours/:artistname",
         component: "tours-page"
     },
     {

@@ -26,15 +26,36 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var api_exports = {};
-__export(api_exports, {
-  default: () => api_default
+var tours_exports = {};
+__export(tours_exports, {
+  default: () => tours_default
 });
-module.exports = __toCommonJS(api_exports);
-var import_express = __toESM(require("express"));
-var import_profiles = __toESM(require("./profiles"));
-var import_artists = __toESM(require("./artists"));
-const router = import_express.default.Router();
-router.use("/profiles", import_profiles.default);
-router.use("/artists", import_artists.default);
-var api_default = router;
+module.exports = __toCommonJS(tours_exports);
+var import_tours = __toESM(require("../models/mongo/tours"));
+function index(artist) {
+  return import_tours.default.find({ artist }).then((list) => list).catch((err) => {
+    throw `${artist} Not Found`;
+  });
+}
+function get(userid) {
+  return import_tours.default.find({}).then((list) => list[0]).catch((err) => {
+    throw `${userid} Not Found`;
+  });
+}
+function create(Tours2) {
+  const p = new import_tours.default(Tours2);
+  return p.save();
+}
+function update(userid, Tours2) {
+  return new Promise((resolve, reject) => {
+    import_tours.default.findOneAndUpdate({ userid }, Tours2, {
+      new: true
+    }).then((Tours3) => {
+      if (Tours3)
+        resolve(Tours3);
+      else
+        reject("Failed to update Tours");
+    });
+  });
+}
+var tours_default = { index, get, create, update };

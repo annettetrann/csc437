@@ -1,18 +1,19 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import './tourinfo-card';
+import { Tour } from "ts-models";
 
 @customElement("tourinfo-list")
 class TourInfoList extends LitElement {
     @property({ type: Array})
-    tourInfo = [];
+    tourInfo: Tour[] = [];
 
     sortAlphabetically() {
-        this.tourLocations.sort((a, b) => a.location.localeCompare(b.location));
+        this.tourInfo.sort((a, b) => a.location.localeCompare(b.location));
         this.requestUpdate();
   }
 
-    renderTourInfo(tourinfo) {
+    renderTourInfo(tourinfo: Tour) {
         return html`<a href="/setlist/">
                 <tourinfo-card class="tourinfo-card">
                     <span slot="tourDate">${tourinfo.date}</span>

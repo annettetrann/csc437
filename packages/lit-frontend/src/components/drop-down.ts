@@ -82,16 +82,16 @@ class DropDownElement extends LitElement {
 
   _handleChange(ev: InputEvent) {
     const target = ev.target;
-    this._toggle(target?.checked);
+    this._toggle((target as HTMLInputElement)?.checked);
   }
 
-  _toggle(open) {
+  _toggle(open: boolean) {
     this.open = open;
     this._toggleClickAway(open);
   }
 
-  _toggleClickAway(open) {
-    const clickawayHandler = (ev) => {
+  _toggleClickAway(open: boolean) {
+    const clickawayHandler = (ev: any) => {
       if (!ev.composedPath().includes(this)) {
         this._toggle(false);
       } else {

@@ -10,7 +10,6 @@ import { authContext } from "./auth-required";
 import { Profile } from "/Users/annettetran/Documents/csc437/packages/ts-models";
 import "./drop-down";
 import "./user-panel";
-import resetCSS from "../styles/reset.css?inline";
 
 @customElement("sw-header")
 export class SoundWaveHeaderElement extends LitElement {
@@ -48,14 +47,12 @@ export class SoundWaveHeaderElement extends LitElement {
 
     return html`
       <header>
-        <h1>Soundwave Collective</h1>
         <p>${welcome}</p>
       </header>
     `;
   }
 
   static styles = [
-    unsafeCSS(resetCSS),
     css`
       header {
         grid-area: header;

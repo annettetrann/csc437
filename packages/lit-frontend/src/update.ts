@@ -1,6 +1,6 @@
 import { JSONRequest } from "./rest";
 import * as App from "./app";
-import { Profile, Artist, Tours, Tour, SetList} from "../ts-models";
+import { Profile, Artist, Tours, Tour, SetList} from "ts-models";
 
 const dispatch = App.createDispatch();
 
@@ -51,87 +51,86 @@ dispatch.addMessage("ProfileSaved", (msg: App.Message) => {
   });
 });
 
-
-async function removeLaterArtistList() { // TODO: REMOVE
-  return [
-    {
-        name: "ODESZA",
-        image: "/images/artist_odesza.jpeg"
-    },
-    {
-        name: "Fred Again...",
-        image: "/images/artist_fredagain.jpeg"
-    },
-    {
-        name: "David Guetta",
-        image: "/images/artists_davidguetta.jpeg"
-    },
-    {
-        name: "Calvin Harris",
-        image: "/images/artists_calvinharris.jpeg"
-    }
-]
-}
-
 dispatch.addMessage("ArtistListRequested", (msg: App.Message) => {
-  return removeLaterArtistList()
-  .then((artistList: Artist[]) => App.updateProps({ artistList })); // step 7 (REMOVE LATER< UNCOMMENT BELOW)
+  return new JSONRequest({})
+    .get(`/artists`)
+    .then((response: Response) => {
+      if (response.status === 200) {
+        return response.json();
+      }
+      return undefined;
+    })
+    .then((json: unknown) => {
+      if (json) {
+        return json as Artist[];
+      }
+      return undefined;
+    })
+    .then((artistList: Artist[] | undefined) => {
+      return artistList ? App.updateProps({ artistList }) : App.noUpdate
+  });
 }); // step 6
 
-
-async function removeLaterToursList() {
-  return [
-    {
-      name: "The Last Goodbye (2023)",
-      image: "/images/tours_odesza_thelastgoodbye.png"
-    },
-    {
-        name: "In Return (2015)",
-        image: "/images/tours_odesza_inreturn.jpeg"
-    }
-
-  ]
-}
-
-
 dispatch.addMessage("ToursListRequested", (msg: App.Message) => {
-  return removeLaterToursList()
-  .then((toursList: Tours[]) => App.updateProps({ toursList })); // step 7 (REMOVE LATER< UNCOMMENT BELOW)
+  const { name } = msg as App.ToursListRequested;
+  return new JSONRequest({})
+    .get(`/tours/${name}`)
+    .then((response: Response) => {
+      if (response.status === 200) {
+        return response.json();
+      }
+      return undefined;
+    })
+    .then((json: unknown) => {
+      if (json) {
+        return json as Tours[];
+      }
+      return undefined;
+    })
+    .then((toursList: Tours[] | undefined) => {
+      return toursList ? App.updateProps({ toursList }) : App.noUpdate
+  });
 });
 
 
-async function removeLaterTourInfoList() {
+async function removeLaterTourInfoList(): Promise<Tour[]> {
   return [
     {
       date: "July 29th",
-      location: "Seattle, WA"
+      location: "Seattle, WA",
+      tourname: "",
     },
     {
         date: "July 30th",
-        location: "Seattle, WA"
+        location: "Seattle, WA",
+        tourname: "",
     },
     {
         date: "July 31st",
-        location: "Seattle, WA"
+        location: "Seattle, WA",
+        tourname: "",
     },
     {
         date: "August 17th",
-        location: "Phoenix, AZ"
+        location: "Phoenix, AZ",
+        tourname: "",
     },
     {
         date: "August 19th",
-        location: "Austin, TX"
+        location: "Austin, TX",
+        tourname: "",
     },
     {
         date: "September 30th",
-        location: "Santa Barbara, CA"
+        location: "Santa Barbara, CA",
+        tourname: "",
     }
   ]
 };
 
 dispatch.addMessage("TourInfoListRequested", (msg: App.Message) => {
   return removeLaterTourInfoList()
-  .then((tourInfoList: Tour[]) => App.updateProps({ tourInfoList })); // step 7 (REMOVE LATER< UNCOMMENT BELOW)
+    .then((tourInfoList: Tour[]) => App.updateProps({ tourInfoList })); // step 7 (REMOVE LATER< UNCOMMENT BELOW)
 });
 
 async function removeLaterSetList() {

@@ -1,13 +1,13 @@
 import { css, html, LitElement, unsafeCSS} from "lit";
 import {customElement, property } from "lit/decorators.js";
-import { Profile } from "../ts-models";
-import * as App from "../src/app";
-import { serverPath } from "./rest";
+import { Profile } from "ts-models";
+import * as App from "../app";
+// import { serverPath } from "../rest";
 
 @customElement("user-profile")
 export class UserProfileElement extends LitElement {
   @property({ attribute: false })
-  profile?: Profile = {};
+  profile?: Profile;
   
   render() {
     const {
@@ -16,7 +16,7 @@ export class UserProfileElement extends LitElement {
       nickname,
       city,
       genres = []
-    } = this.profile;
+    } = this.profile || {} as any;
 
     const renderGenre = (s: string) => html`<dd>${s}</dd>`;
 
@@ -39,18 +39,18 @@ export class UserProfileElement extends LitElement {
   }
 
   _renderAvatar() {
-    const { name, nickname, avatar, color } = (this.profile ||
-      {}) as Profile;
-    const avatarImg = avatar
-      ? html`<img id="avatarImg" src="${avatar}" />`
-      : (nickname || name || " ").slice(0, 1);
-    const colorStyle = color
-      ? `--avatar-backgroundColor: ${color}`
-      : "";
+    // const { name, nickname, avatar, color } = (this.profile ||
+    //   {}) as Profile;
+    // const avatarImg = avatar
+    //   ? html`<img id="avatarImg" src="${avatar}" />`
+    //   : (nickname || name || " ").slice(0, 1);
+    // const colorStyle = color
+    //   ? `--avatar-backgroundColor: ${color}`
+    //   : "";
 
-    return html` <div class="avatar" style=${colorStyle}>
-      ${avatarImg}
-    </div>`;
+    // return html` <div class="avatar" style=${colorStyle}>
+    //   ${avatarImg}
+    // </div>`;
   }
 
   static styles = [
@@ -128,7 +128,7 @@ export class UserProfileElement extends LitElement {
 @customElement("user-profile-edit")
 export class UserProfileEditElement extends UserProfileElement {
   @property()
-  profile?: Profile = {}; //JSON.parse(localStorage.getItem("profile") ??  "{}");
+  profile?: Profile; //JSON.parse(localStorage.getItem("profile") ??  "{}");
 
   @property()
   submitProfileChange?: (profile: Profile) => void;
@@ -140,7 +140,7 @@ export class UserProfileEditElement extends UserProfileElement {
       nickname,
       city,
       genres = []
-    } = this.profile;
+    } = this.profile || {} as any;
 
     console.log("Rendering form", this.profile);
 
@@ -239,5 +239,9 @@ export class UserProfileEditElement extends UserProfileElement {
       // }).then(async (response) => {
       //   console.log(await response.json())});
     }
+  }
+
+  _renderAvatar(): void {
+      
   }
 }

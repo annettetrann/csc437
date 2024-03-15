@@ -7,7 +7,7 @@ import '../components/drop-down';
 import '../components/toggle-switch';
 import '../components/user-profile';
 
-import { Profile } from "../ts-models";
+import { Profile } from "ts-models";
 
 const pageCSS = css`
     header {
@@ -255,7 +255,7 @@ class ProfileView extends App.View {
         console.log('Form submitted', form);
         this.dispatchMessage({ 
             type: "ProfileSaved",
-            userid: this.profile.userid,
+            userid: this.profile?.userid ?? '',
             profile: {
                 ...form,
                 avatar: ""
@@ -285,7 +285,7 @@ class ProfileView extends App.View {
                     <user-panel 
                         slot="menu" 
                         class="user-dropdown">
-                        <span slot="name">${this.profile.name}</span>
+                        <span slot="name">${this.profile?.name}</span>
                     </user-panel>
                 </drop-down>
             </header>
@@ -294,7 +294,7 @@ class ProfileView extends App.View {
                 <main class="page">
                     
                     <user-profile .profile=${this.profile}></user-profile>
-                    <user-profile-edit .profile=${this.profile} .submitProfileChange=${(form) => this.onSubmit(form)}></user-profile-edit>
+                    <user-profile-edit .profile=${this.profile} .submitProfileChange=${(form: any) => this.onSubmit(form)}></user-profile-edit>
                 </main>
             </body>
         </article>

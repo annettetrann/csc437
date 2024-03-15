@@ -1,19 +1,20 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import './artist-card';
+import { Artist } from "ts-models";
 
 @customElement("artist-list")
 class ArtistList extends LitElement {
     @property({ type: Array})
-    artists = [];
+    artists: Artist[] = [];
 
     sortAlphabetically() {
         this.artists.sort((a, b) => a.name.localeCompare(b.name));
         this.requestUpdate();
     }
 
-    renderArtist(artist) {
-        return html`<a href="/tours/">
+    renderArtist(artist: Artist) {
+        return html`<a href="/tours/${artist.name}">
                 <artist-card class="artist-card">
                     <img slot="artistImage" src="${artist.image}"/>
                     <span slot="artistName">${artist.name}</span> 
@@ -23,7 +24,6 @@ class ArtistList extends LitElement {
     }
 
     render() {
-        console.log(this.artists);
         return html`
         <section>
             <div class="sort">

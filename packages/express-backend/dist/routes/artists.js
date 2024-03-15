@@ -26,15 +26,15 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var api_exports = {};
-__export(api_exports, {
-  default: () => api_default
+var artists_exports = {};
+__export(artists_exports, {
+  default: () => artists_default
 });
-module.exports = __toCommonJS(api_exports);
+module.exports = __toCommonJS(artists_exports);
 var import_express = __toESM(require("express"));
-var import_profiles = __toESM(require("./profiles"));
-var import_artists = __toESM(require("./artists"));
+var import_artists = __toESM(require("../services/artists"));
 const router = import_express.default.Router();
-router.use("/profiles", import_profiles.default);
-router.use("/artists", import_artists.default);
-var api_default = router;
+router.get("/", (req, res) => {
+  import_artists.default.index().then((list) => res.json(list));
+});
+var artists_default = router;

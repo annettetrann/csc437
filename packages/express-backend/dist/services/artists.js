@@ -26,15 +26,34 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var api_exports = {};
-__export(api_exports, {
-  default: () => api_default
+var artists_exports = {};
+__export(artists_exports, {
+  default: () => artists_default
 });
-module.exports = __toCommonJS(api_exports);
-var import_express = __toESM(require("express"));
-var import_profiles = __toESM(require("./profiles"));
-var import_artists = __toESM(require("./artists"));
-const router = import_express.default.Router();
-router.use("/profiles", import_profiles.default);
-router.use("/artists", import_artists.default);
-var api_default = router;
+module.exports = __toCommonJS(artists_exports);
+var import_artist = __toESM(require("../models/mongo/artist"));
+function index() {
+  return import_artist.default.find();
+}
+function get(userid) {
+  return import_artist.default.find({ userid }).then((list) => list[0]).catch((err) => {
+    throw `${userid} Not Found`;
+  });
+}
+function create(Artist2) {
+  const p = new import_artist.default(Artist2);
+  return p.save();
+}
+function update(userid, Artist2) {
+  return new Promise((resolve, reject) => {
+    import_artist.default.findOneAndUpdate({ userid }, Artist2, {
+      new: true
+    }).then((Artist3) => {
+      if (Artist3)
+        resolve(Artist3);
+      else
+        reject("Failed to update Artist");
+    });
+  });
+}
+var artists_default = { index, get, create, update };

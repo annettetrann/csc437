@@ -1,7 +1,7 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { ToggleSwitchElement } from "./toggle-switch";
-import { PresetButtonsElement } from "./preset-buttons";
+// import { PresetButtonsElement } from "./preset-buttons";
 
 @customElement("user-panel")
 export class UserPanelElement extends LitElement {
@@ -98,17 +98,17 @@ export class UserPanelElement extends LitElement {
     else body.classList.remove("dark-mode");
   }
 
-  _selectFontSize(ev: InputEvent) {
-    const target = ev.target as PresetButtonsElement;
-    const body = document.body;
+  // _selectFontSize(ev: InputEvent) {
+  //   const target = ev.target as PresetButtonsElement;
+  //   const body = document.body;
 
-    console.log("Selecting Font Size", ev);
+  //   console.log("Selecting Font Size", ev);
 
-    if (target) {
-      const fontSize = target.value
-        ? target.value.toString() + "px"
-        : "initial";
-      body.style.fontSize = fontSize;
-    }
-  }
+  //   if (target) {
+  //     const fontSize = target.value
+  //       ? target.value.toString() + "px"
+  //       : "initial";
+  //     body.style.fontSize = fontSize;
+  //   }
+  // }
 }

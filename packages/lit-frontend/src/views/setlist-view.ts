@@ -326,7 +326,7 @@ class SetListView extends App.View {
                 <user-panel 
                     slot="menu" 
                     class="user-dropdown">
-                    <span slot="name">${this.profile.name}</span>
+                    <span slot="name">${this.profile?.name}</span>
                 </user-panel>
             </drop-down>
         </header>

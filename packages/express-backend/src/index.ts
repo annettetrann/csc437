@@ -7,6 +7,9 @@ import profiles from "./services/profiles";
 import { Profile } from "./models/profile";
 
 import { loginUser, registerUser } from "./auth";
+import artists from "./services/artists";
+import { Artist, Tours } from "ts-models";
+import tours from "./services/tours";
 
 console.log("Connecting to MongoDB"); 
 
@@ -59,4 +62,18 @@ app.put("/api/profiles/:userid", (req: Request, res: Response) => {
 });
 
 app.post("/api/login", (req: Request, res: Response) => {
+});
+
+
+app.get("/api/artists", (req: Request, res: Response) => {
+  artists
+    .index()
+    .then((list: Artist[]) => res.json(list));
+});
+
+app.get("/api/tours/:artistname", (req: Request, res: Response) => {
+  const { artistname } = req.params;
+  tours
+    .index(artistname)
+    .then((list: Tours[]) => res.json(list));
 });

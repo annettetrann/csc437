@@ -35,13 +35,14 @@ export interface ProfileRequested extends MsgType<"ProfileRequested"> {
 export interface ArtistListRequested extends MsgType<"ArtistListRequested"> {
 } // step 4
 
-export interface ToursListRequested extends MsgType<"ArtistListRequested"> {
+export interface ToursListRequested extends MsgType<"ToursListRequested"> {
+  name: string; // STEP f - 1
 }
 
-export interface TourInfoListRequested extends MsgType<"ArtistListRequested"> {
+export interface TourInfoListRequested extends MsgType<"TourInfoListRequested"> {
 } 
 
-export interface SetListRequested extends MsgType<"ArtistListRequested"> {
+export interface SetListRequested extends MsgType<"SetListRequested"> {
 } 
 
 // step 5 (Go to update.ts)

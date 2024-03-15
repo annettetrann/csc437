@@ -2,9 +2,9 @@
   "name": "lit-frontend",
   "version": "1.0.0",
   "description": "",
-  "main": "app/index.js",
+  "main": "src/index.ts",
   "scripts": {
-    "dev": "npx vite src",
+    "dev": "npx vite",
     "build": "npx tsc && npx vite build"
   },
   "author": "",
@@ -12,6 +12,7 @@
   "dependencies": {
     "@lit/context": "^1.1.0",
     "@vaadin/router": "^1.7.5",
-    "lit": "^3.1.2"
+    "lit": "^3.1.2",
+    "vite": "^5.1.6"
   }
 }

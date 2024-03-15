@@ -274,35 +274,35 @@ class TourView extends App.View {
             type: "TourInfoListRequested"});
     }
 
-    // getTourInfo() {
-    //     const tourInfo = [
-    //         {
-    //             date: "July 29th",
-    //             location: "Seattle, WA"
-    //         },
-    //         {
-    //             date: "July 30th",
-    //             location: "Seattle, WA"
-    //         },
-    //         {
-    //             date: "July 31st",
-    //             location: "Seattle, WA"
-    //         },
-    //         {
-    //             date: "August 17th",
-    //             location: "Phoenix, AZ"
-    //         },
-    //         {
-    //             date: "August 19th",
-    //             location: "Austin, TX"
-    //         },
-    //         {
-    //             date: "September 30th",
-    //             location: "Santa Barbara, CA"
-    //         }
-    //     ]
-    //     return tourInfo;
-    // }
+    getTourInfo() {
+        const tourInfo = [
+            {
+                date: "July 29th",
+                location: "Seattle, WA"
+            },
+            {
+                date: "July 30th",
+                location: "Seattle, WA"
+            },
+            {
+                date: "July 31st",
+                location: "Seattle, WA"
+            },
+            {
+                date: "August 17th",
+                location: "Phoenix, AZ"
+            },
+            {
+                date: "August 19th",
+                location: "Austin, TX"
+            },
+            {
+                date: "September 30th",
+                location: "Santa Barbara, CA"
+            }
+        ]
+        return tourInfo;
+    }
 
     render() {
         return html`
@@ -326,7 +326,7 @@ class TourView extends App.View {
                     <user-panel 
                         slot="menu" 
                         class="user-dropdown">
-                        <span slot="name">${this.profile.name}</span>
+                        <span slot="name">${this.profile?.name}</span>
                     </user-panel>
                 </drop-down>
             </header>
