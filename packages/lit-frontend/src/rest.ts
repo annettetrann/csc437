@@ -1,4 +1,4 @@
-const SERVER_ROOT = 'http://127.0.0.1:3000'; //window.location.origin;
+const SERVER_ROOT = 'https://soundwave-collective-api.netlify.app'; //window.location.origin;
 const API_PATH = "/api";
 const TOKEN_KEY = "JWT_AUTH_TOKEN";
 
