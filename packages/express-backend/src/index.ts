@@ -13,7 +13,7 @@ import tours from "./services/tours";
 
 console.log("Connecting to MongoDB"); 
 
-const app = express();
+export const app = express();
 const port = process.env.PORT || 3000;
 
 console.log("Connecting to MongoDB");
@@ -46,9 +46,9 @@ app.post("/api/profiles", (req: Request, res: Response) => {
     .catch((err) => res.status(500).send(err));
 });
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Server running at http://localhost:${port}`);
+// });
 
 app.put("/api/profiles/:userid", (req: Request, res: Response) => {
   const { userid } = req.params;
