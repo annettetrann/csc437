@@ -40,9 +40,12 @@ export interface ToursListRequested extends MsgType<"ToursListRequested"> {
 }
 
 export interface TourInfoListRequested extends MsgType<"TourInfoListRequested"> {
+  name: string;
 } 
 
 export interface SetListRequested extends MsgType<"SetListRequested"> {
+  name: string;
+  date: string;
 } 
 
 // step 5 (Go to update.ts)

@@ -14,7 +14,8 @@ class TourInfoList extends LitElement {
   }
 
     renderTourInfo(tourinfo: Tour) {
-        return html`<a href="/setlist/">
+        console.log(`/setlist/${encodeURIComponent(tourinfo.tourname)}/${encodeURIComponent(tourinfo.date)}/`)
+        return html`<a href="/setlist/${encodeURIComponent(tourinfo.tourname)}/${encodeURIComponent(tourinfo.date)}/">
                 <tourinfo-card class="tourinfo-card">
                     <span slot="tourDate">${tourinfo.date}</span>
                     <span slot="tourLocation">${tourinfo.location}</span> 

@@ -129,8 +129,26 @@ async function removeLaterTourInfoList(): Promise<Tour[]> {
 };
 
 dispatch.addMessage("TourInfoListRequested", (msg: App.Message) => {
-  return removeLaterTourInfoList()
-    .then((tourInfoList: Tour[]) => App.updateProps({ tourInfoList })); // step 7 (REMOVE LATER< UNCOMMENT BELOW)
+
+  const { name } = msg as App.TourInfoListRequested;
+
+  return new JSONRequest({})
+    .get(`/tours/get/${name}`)
+    .then((response: Response) => {
+      if (response.status === 200) {
+        return response.json();
+      }
+      return undefined;
+    })
+    .then((json: unknown) => {
+      if (json) {
+        return json as Tour[];
+      }
+      return undefined;
+    })
+    .then((tourInfoList: Tour[] | undefined) => {
+      return tourInfoList ? App.updateProps({ tourInfoList }) : App.noUpdate
+  });
 });
 
 async function removeLaterSetList() {
@@ -171,8 +189,24 @@ async function removeLaterSetList() {
 }
 
 dispatch.addMessage("SetListRequested", (msg: App.Message) => {
-  return removeLaterSetList()
-  .then((setList: SetList[]) => App.updateProps({ setList })); // step 7 (REMOVE LATER< UNCOMMENT BELOW)
+  const { name, date } = msg as App.SetListRequested;
+  return new JSONRequest({})
+    .get(`/setlist/${name}/${date}`)
+    .then((response: Response) => {
+      if (response.status === 200) {
+        return response.json();
+      }
+      return undefined;
+    })
+    .then((json: unknown) => {
+      if (json) {
+        return json as SetList[];
+      }
+      return undefined;
+    })
+    .then((setList: SetList[] | undefined) => {
+      return setList ? App.updateProps({ setList }) : App.noUpdate
+  });
 });
 
 export default dispatch.update;

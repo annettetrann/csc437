@@ -37,6 +37,8 @@ var import_mongoConnect = require("./mongoConnect");
 var import_profiles = __toESM(require("./services/profiles"));
 var import_artists = __toESM(require("./services/artists"));
 var import_tours = __toESM(require("./services/tours"));
+var import_tour = __toESM(require("./services/tour"));
+var import_setlist = __toESM(require("./services/setlist"));
 console.log("Connecting to MongoDB");
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
@@ -70,6 +72,20 @@ app.get("/api/artists", (req, res) => {
 app.get("/api/tours/:artistname", (req, res) => {
   const { artistname } = req.params;
   import_tours.default.index(artistname).then((list) => res.json(list));
+});
+app.get("/api/tours/get/:tourname", (req, res) => {
+  const { tourname } = req.params;
+  console.log(tourname);
+  import_tour.default.index(tourname).then((list) => res.json(list));
+});
+app.get("/api/setlist/:tourname/:tourdate", (req, res) => {
+  const { tourname, tourdate } = req.params;
+  console.log(tourdate, tourname);
+  console.log(tourname);
+  import_setlist.default.index(tourname, tourdate).then((list) => res.json(list));
+});
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 });
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {

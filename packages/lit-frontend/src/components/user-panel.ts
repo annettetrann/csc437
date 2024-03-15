@@ -29,7 +29,7 @@ export class UserPanelElement extends LitElement {
           <slot name="logout">Sign out&hellip;</slot>
         </li>
         <li>
-            <a href="signup.html">Sign Up</a>
+            <a href="/">Sign Up</a>
         </li>
       </ul>
     `;

@@ -19,11 +19,11 @@ export default [
         component: "profile-page"
     },
     {
-        path: "/tour/",
+        path: "/tours/details/:tourname/",
         component: "tour-page"
     },
     {
-        path: "/setlist/",
+        path: "/setlist/:tourname/:tourdate",
         component: "setlist-page"
     },
     { 

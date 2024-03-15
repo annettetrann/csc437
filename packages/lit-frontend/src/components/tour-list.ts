@@ -14,7 +14,7 @@ class TourList extends LitElement {
     }
 
     renderTour(tour: Tours) {
-        return html`<a href="/tour/">
+        return html`<a href="/tours/details/${tour.name}/">
                 <tour-card class="tour-card">
                     <img slot="tourImage" src="${tour.image}"/>
                     <span slot="tourName">${tour.name}</span>

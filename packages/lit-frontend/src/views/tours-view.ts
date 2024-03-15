@@ -315,12 +315,12 @@ class ToursView extends App.View {
         return html`
             <article>
                 <nav aria-label="breadcrumb">
-                <a href="">Home</a> &gt;
+                <a href="/">Home</a> &gt;
                 ${this.artistname}
                 </nav>  
                 <header>
                     <div class="header-hero">
-                        <a href="index.html">
+                        <a href="/">
                             <h3>SOUNDWAVE</h3>
                             <h3>COLLECTIVE</h3>
                         </a>

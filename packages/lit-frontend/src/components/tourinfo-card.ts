@@ -16,7 +16,7 @@ class TourInfoCard extends LitElement {
             <h3>
                 <slot name="tourDate">Date</slot>
             </h3>
-            <a href="/setlist/">
+            <a >
                     <button class="tour-city">
                         <slot name="tourLocation">
                             City, State

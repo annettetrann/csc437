@@ -245,7 +245,7 @@ class PageHeader extends LitElement {
             </nav>  
             <header>
                 <div class="header-hero">
-                    <a href="index.html">
+                    <a href="/">
                         <h3>SOUNDWAVE</h3>
                         <h3>COLLECTIVE</h3>
                     </a>

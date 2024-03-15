@@ -8,8 +8,10 @@ import { Profile } from "./models/profile";
 
 import { loginUser, registerUser } from "./auth";
 import artists from "./services/artists";
-import { Artist, Tours } from "ts-models";
+import { Artist, Tours, Tour, SetList } from "ts-models";
 import tours from "./services/tours";
+import tour from "./services/tour";
+import setlist from "./services/setlist";
 
 console.log("Connecting to MongoDB"); 
 
@@ -46,10 +48,6 @@ app.post("/api/profiles", (req: Request, res: Response) => {
     .catch((err) => res.status(500).send(err));
 });
 
-// app.listen(port, () => {
-//   console.log(`Server running at http://localhost:${port}`);
-// });
-
 app.put("/api/profiles/:userid", (req: Request, res: Response) => {
   const { userid } = req.params;
   const newProfile = req.body;
@@ -65,15 +63,45 @@ app.post("/api/login", (req: Request, res: Response) => {
 });
 
 
+//get the list of artists 
 app.get("/api/artists", (req: Request, res: Response) => {
   artists
     .index()
     .then((list: Artist[]) => res.json(list));
 });
 
+
+//get the tours by artists
 app.get("/api/tours/:artistname", (req: Request, res: Response) => {
   const { artistname } = req.params;
   tours
     .index(artistname)
     .then((list: Tours[]) => res.json(list));
+});
+
+// step 4
+//get the tourInfo by tourname
+app.get("/api/tours/get/:tourname", (req: Request, res: Response) => {
+  const { tourname } = req.params;
+  console.log(tourname)
+  tour
+    .index(tourname)
+    .then((list: Tour[]) => res.json(list));
+});
+
+
+app.get("/api/setlist/:tourname/:tourdate", (req: Request, res: Response) => {
+  const { tourname, tourdate } = req.params;
+  console.log(tourdate, tourname)
+  console.log(tourname)
+  setlist
+    .index(tourname, tourdate)
+    .then((list: SetList[]) => res.json(list));
+});
+
+
+
+
+ app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 });

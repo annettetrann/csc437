@@ -251,6 +251,12 @@ a:active{
 
 @customElement('tour-page')
 class TourView extends App.View {
+    @property({attribute: 'tourname', reflect: true})
+    get tourname() {
+        //@ts-ignore
+        return this.location?.params.tourname || '';
+
+    }
     constructor() {
         super();
       }
@@ -271,7 +277,9 @@ class TourView extends App.View {
     connectedCallback(): void {
         super.connectedCallback();
         this.dispatchMessage({ 
-            type: "TourInfoListRequested"});
+            type: "TourInfoListRequested",
+            name: this.tourname
+    });
     }
 
     getTourInfo() {

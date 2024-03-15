@@ -250,6 +250,19 @@ class SetListView extends App.View {
     
     static styles = pageCSS;
 
+    @property({attribute: 'tourname', reflect: true})
+    get tourname() {
+        //@ts-ignore
+        return this.location?.params.tourname || '';
+
+    }
+    @property({attribute: 'tourdate', reflect: true})
+    get tourdate() {
+        //@ts-ignore
+        return this.location?.params.tourdate || '';
+
+    }
+
     @property()
     get profile() {
         return this.getFromModel<Profile>('profile');
@@ -262,7 +275,12 @@ class SetListView extends App.View {
 
     connectedCallback(): void {
         super.connectedCallback();
-        this.dispatchMessage({ type: "SetListRequested" });
+        this.dispatchMessage(
+            { 
+                type: "SetListRequested",
+                name: this.tourname,
+                date: this.tourdate
+            });
     }
 
     // getSetList() {
@@ -307,7 +325,7 @@ class SetListView extends App.View {
         return html`
         <article class="Set List">
         <nav aria-label="breadcrumb">
-            <a href="index.html">Home</a> &gt;
+            <a href="/">Home</a> &gt;
             <a href="tours.html">ODESZA</a> &gt;
             <a href="tour.html">The Last Goodbye (2023)</a> &gt;
             Set List
@@ -331,9 +349,9 @@ class SetListView extends App.View {
             </drop-down>
         </header>
         <!-- <h1>SetList</h1> -->
-        <h2>ODESZA @ Santa Barbara Bowl</h2>
+        <h2>${this.tourname}</h2>
         <div class="setlist-bg">
-            <h3 class="setlist-bg">September 30th, 2023</h3>
+            <h3 class="setlist-bg">${this.tourdate}</h3>
         </div>
         <img src="/images/tour_odesza_tlg.jpeg" />
         <section class="setlist">
