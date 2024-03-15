@@ -7,7 +7,7 @@ import {
 import { consume } from "@lit/context";
 import { APIUser, APIRequest } from "../rest";
 import { authContext } from "./auth-required";
-import { Profile } from "/Users/annettetran/Documents/csc437/packages/ts-models";
+import { Profile } from "ts-models";
 import "./drop-down";
 import "./user-panel";
 
