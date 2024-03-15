@@ -1,6 +1,6 @@
 import { Document } from "mongoose";
 import { Tour } from "ts-models";
-import TourModel from "../models/mongo/Tour";
+import TourModel from "../models/mongo/tour";
 
  // step 2: create this file
 function index(tourname: string): Promise<Tour[]> {

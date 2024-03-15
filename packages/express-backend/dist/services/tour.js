@@ -31,24 +31,24 @@ __export(tour_exports, {
   default: () => tour_default
 });
 module.exports = __toCommonJS(tour_exports);
-var import_Tour = __toESM(require("../models/mongo/Tour"));
+var import_tour = __toESM(require("../models/mongo/tour"));
 function index(tourname) {
-  return import_Tour.default.find({ tourname }).then((list) => list).catch((err) => {
+  return import_tour.default.find({ tourname }).then((list) => list).catch((err) => {
     throw `${tourname} Not Found`;
   });
 }
 function get(userid) {
-  return import_Tour.default.find({}).then((list) => list[0]).catch((err) => {
+  return import_tour.default.find({}).then((list) => list[0]).catch((err) => {
     throw `${userid} Not Found`;
   });
 }
 function create(Tour2) {
-  const p = new import_Tour.default(Tour2);
+  const p = new import_tour.default(Tour2);
   return p.save();
 }
 function update(userid, Tour2) {
   return new Promise((resolve, reject) => {
-    import_Tour.default.findOneAndUpdate({ userid }, Tour2, {
+    import_tour.default.findOneAndUpdate({ userid }, Tour2, {
       new: true
     }).then((Tour3) => {
       if (Tour3)
