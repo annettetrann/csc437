@@ -16,7 +16,7 @@ const tourSchema = new Schema<Tour>( // step 1
     tourname: { 
         type: String, 
         trim: true 
-      },
+    },
   },
   { collection: "tour" }
 );
