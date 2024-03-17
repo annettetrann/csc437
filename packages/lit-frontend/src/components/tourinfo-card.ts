@@ -1,6 +1,8 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
+// import { Tour } from "ts-models";
+
 @customElement("tourinfo-card")
 class TourInfoCard extends LitElement {
     @property({ type: String})
@@ -9,19 +11,24 @@ class TourInfoCard extends LitElement {
     @property({ type: String})
     location: string = "";
 
+    @property({type: String})
+    tourname: string = "";
+    
+    //<a href="/setlist/${encodeURIComponent(tourinfo.tourname)}/${encodeURIComponent(tourinfo.date)}/">
     
     render() {
+        console.log(`/setlist/${encodeURIComponent(this.tourname)}/${encodeURIComponent(this.date)}/`)
         return html`
         <div class="tourinfo">
             <h3>
                 <slot name="tourDate">Date</slot>
             </h3>
-            <a >
-                    <button class="tour-city">
-                        <slot name="tourLocation">
-                            City, State
-                        </slot>
-                    </button>
+            <a href="/setlist/${encodeURIComponent(this.tourname)}/${encodeURIComponent(this.date)}/">
+                <button class="tour-city">
+                    <slot name="tourLocation">
+                        City, State
+                    </slot>
+                </button>
             </a>
         </card>
     `;
