@@ -271,7 +271,6 @@ class TourView extends App.View {
     @property()
     get tourInfoList() {
         return this.getFromModel<Tour>('tourInfoList');
-
     }
 
     connectedCallback(): void {
@@ -317,8 +316,8 @@ class TourView extends App.View {
             <article class="tours">
             <nav aria-label="breadcrumb">
                 <a href="index.html">Home</a> &gt;
-                <a href="tours.html">ODESZA</a> &gt;
-                The Last Goodbye (2023)
+                <a href="tours.html">${localStorage.getItem('artist')}</a> &gt;
+                ${this.tourname}
             </nav>
             <header>
                 <div class="header-hero">

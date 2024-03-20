@@ -5,9 +5,7 @@ import './drop-down';
 import './user-panel';
 import './toggle-switch'
 
-const pageCSS = css`/* * {
-    box-sizing: border-box;
-} */
+const pageCSS = css`
 header {
     /* background-color: var(--color-header-background); */
     overflow: visible;
@@ -234,7 +232,7 @@ class PageHeader extends LitElement {
     @property()
     name: string = '';
 
-    static styles = pageCSS;
+    static styles = [pageCSS];
 
     render() {
         console.log("Hello");

@@ -312,6 +312,7 @@ class ToursView extends App.View {
     //     return tours;
     // }
     render() {
+        localStorage.setItem('artist', this.artistname);
         return html`
             <article>
                 <nav aria-label="breadcrumb">

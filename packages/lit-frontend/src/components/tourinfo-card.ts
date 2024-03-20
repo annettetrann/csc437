@@ -13,8 +13,11 @@ class TourInfoCard extends LitElement {
 
     @property({type: String})
     tourname: string = "";
+
+    @property({type: String})
+    redirectUrl: string = "";
     
-    //<a href="/setlist/${encodeURIComponent(tourinfo.tourname)}/${encodeURIComponent(tourinfo.date)}/">
+    // <a href="/setlist/${encodeURIComponent(tourinfo.tourname)}/${encodeURIComponent(tourinfo.date)}/">
     
     render() {
         return html`
@@ -22,7 +25,7 @@ class TourInfoCard extends LitElement {
             <h3>
                 <slot name="tourDate">Date</slot>
             </h3>
-            <a href="#">
+            <a href="${this.redirectUrl}">
                 <button class="tour-city">
                     <slot name="tourLocation">
                         City, State

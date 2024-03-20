@@ -326,9 +326,9 @@ class SetListView extends App.View {
         <article class="Set List">
         <nav aria-label="breadcrumb">
             <a href="/">Home</a> &gt;
-            <a href="tours.html">ODESZA</a> &gt;
-            <a href="tour.html">The Last Goodbye (2023)</a> &gt;
-            Set List
+            <a href="tours.html">${localStorage.getItem('artist')}</a> &gt;
+            <a href="tour.html">${this.tourname}</a> &gt;
+            Set List for ${this.tourdate}
         </nav>
         <header>
             <div class="header-hero">
