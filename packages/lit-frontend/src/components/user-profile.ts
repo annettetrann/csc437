@@ -141,7 +141,6 @@ export class UserProfileEditElement extends UserProfileElement {
       city,
       genres = []
     } = this.profile || {} as any;
-
     console.log("Rendering form", this.profile);
 
     return html`

@@ -234,6 +234,8 @@ class ProfileView extends App.View {
     constructor() {
         super();
       }
+
+    userid = '';
     
     static styles = pageCSS;
 
@@ -252,7 +254,13 @@ class ProfileView extends App.View {
     }
 
     onSubmit(form: any) {
-        console.log('Form submitted', form);
+        console.log('Form submitted', form, this.userid, "###");
+        if (form.userid !== this.userid) {
+            this.dispatchMessage({ 
+                type: "ProfileRequested",
+                userid: form.userid
+             });
+        } else {
         this.dispatchMessage({ 
             type: "ProfileSaved",
             userid: this.profile?.userid ?? '',
@@ -261,15 +269,17 @@ class ProfileView extends App.View {
                 avatar: ""
             }
          });
+        }
     }
 
     render() {
+        this.userid = this.profile?.userid ?? '';
         return html`
         <article>
 
             <nav aria-label="breadcrumb">
             <a href="/">Home</a> &gt;
-            ODESZA
+            Profile
             </nav>  
             <header>
                 <div class="header-hero">

@@ -256,7 +256,10 @@ class IndexView extends App.View {
   connectedCallback(): void { //step 9
     super.connectedCallback();
     this.dispatchMessage({ type: "ArtistListRequested" }); // step 9
-  
+    const dummyProfile = {
+        "userid":"ken"
+    };
+    localStorage.setItem('profile', JSON.stringify(dummyProfile))
   }
 
   render() {

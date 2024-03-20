@@ -312,6 +312,7 @@ class TourView extends App.View {
     // }
 
     render() {
+        const image_path = `/images/tours/${this.tourname.replaceAll(' ', '_')}.jpeg`
         return html`
             <article class="tours">
             <nav aria-label="breadcrumb">
@@ -337,7 +338,7 @@ class TourView extends App.View {
                     </user-panel>
                 </drop-down>
             </header>
-            <img src="/images/tour_odesza_tlg.jpeg"/>
+            <img src="${image_path}"/>
             <section class="tour">
                 <h2>Dates // Locations</h2>
                 <tourinfo-list .tourInfo=${this.tourInfoList}></tourinfo-list>

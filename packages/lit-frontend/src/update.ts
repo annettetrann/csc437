@@ -18,7 +18,7 @@ dispatch.addMessage("ProfileRequested", (msg: App.Message) => {
     .then((json: unknown) => {
       if (json) {
         console.log("Profile:", json);
-        json as Profile;
+        return json as Profile;
       }
       return undefined;
     })

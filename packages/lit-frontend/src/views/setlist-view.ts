@@ -322,6 +322,7 @@ class SetListView extends App.View {
     // }
 
     render() {
+        const image_path = `/images/tours/${this.tourname.replaceAll(' ', '_').trim()}.jpeg`;
         return html`
         <article class="Set List">
         <nav aria-label="breadcrumb">
@@ -353,7 +354,7 @@ class SetListView extends App.View {
         <div class="setlist-bg">
             <h3 class="setlist-bg">${this.tourdate}</h3>
         </div>
-        <img src="/images/tour_odesza_tlg.jpeg" />
+        <img src="${image_path}" />
         <section class="setlist">
             <set-list .songs=${this.setList}></set-list>
         </section>
